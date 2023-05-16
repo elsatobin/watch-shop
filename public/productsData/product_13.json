@@ -1,0 +1,60 @@
+{
+	"id": 1,
+	"brand": "Tommy Hilfiger",
+	"name": "Men's Decker Blue Silicon Strap Analog Wrist Watch 1791476",
+	"model_number": "1791476",
+	"rate": 4.0,
+	"num_ratings": 184,
+	"was_price": 695.0,
+	"now_price": 397.53,
+	"savings_amount": 297.47,
+	"savings_percent": 42,
+	"images": [
+		"/images/pro-watch-5.png",
+		"/images/pro-watch-2.png",
+		"/images/pro-watch-3.png",
+		"/images/pro-watch-4.png"
+	],
+	"colors": [
+		{ "name": "blue", "code": "#0000ff" },
+		{ "name": "black", "code": "#000" }
+	],
+	"highlights": [
+		"Precisely designed band for comfortable wrist movement",
+		"Designed with water-resistant features for ultimate safety of the watch",
+		"Suitable to be worn at any events or occasions be at home, work or parties",
+		"It comes with a protective coating and superb addition to your accessory shelf",
+		"Decked with an adjustable closure that renders a secure and customized fit",
+		"Crafted with hardened window material which resist scratch and dust",
+		"Made From High Quality Materials"
+	],
+	"overview": "Tommy Hilfiger is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic american cool style, featuring preppy with a twist designs. Founded in 1985, Tommy Hilfiger delivers premium styling, quality and value to consumers worldwide under the Tommy Hilfiger and Tommy jeans brands, with a breadth of collections including Hilfiger collection, Tommy Hilfiger tailored, men’s, women’s and kids’ sportswear, denim, accessories, and footwear. In addition, the brand is licensed for a range of products, including fragrances, eyewear, watches and home furnishings. Founder Tommy Hilfiger remains the company’s principal designer and provides leadership and direction for the design process.Tommy Hilfiger, which was acquired by pvh corp. In 2010, is a global apparel and retail company with more than 15,000 associates worldwide. With the support of strong global consumer recognition, Tommy Hilfiger has built an extensive distribution network in over 100 countries and more than 2,000 retail stores throughout north america, europe, latin america and the asia pacific region.",
+	"specs": {
+		"movement": "Quartz",
+		"case_shape": "Round shape",
+		"case_material": "Stainless Steel",
+		"style": "Casual",
+		"compact_size": true,
+		"department": "Men",
+		"dial_color": "Navy",
+		"case_size": "46 mm",
+		"face_material": "Steel",
+		"features": ["Day Display", "Date Display", "Luminous Pointer Display"],
+		"interchangeable_face": false,
+		"interchangeable_band": false,
+		"band_closure": "Buckle",
+		"band_color": "Blue",
+		"band_material": "Silicone",
+		"face_shape": "Round",
+		"face_type": "Chronograph",
+		"water_resistance": "5 atm"
+	},
+	"reviews": [
+		{
+			"name": "mohamed ali s.",
+			"label": "The strap is of poor quality and dial is very cheap quality",
+			"details": "This brand is supposed to be of high quality as per the brand name and it doesn't even have a radium dial?? Also the strap color is fading quickly"
+		}
+	],
+	"included_items": ["Watch", "warranty Card"]
+}

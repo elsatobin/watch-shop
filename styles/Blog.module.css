@@ -1,0 +1,30 @@
+.blog_card:hover .blog_info {
+   transform: rotateX(180deg);
+   -webkit-transform: rotateX(180deg);
+   opacity: 0;
+   visibility: hidden;
+}
+
+.blog_card:hover .blog_link {
+   transform: rotateX(0);
+   -webkit-transform: rotateX(0);
+   opacity: 1;
+   visibility: visible;
+}
+.blog_info {
+   opacity: 1;
+   visibility: visible;
+   transition: 0.25s ease-in;
+   -webkit-transition: 0.25s ease-in;
+   transform: rotateX(0);
+   -webkit-transform: rotateX(0);
+}
+.blog_link {
+   position: absolute;
+   opacity: 0;
+   visibility: hidden;
+   transition: 0.25s ease-in;
+   -webkit-transition: 0.25s ease-in;
+   transform: rotateX(180deg);
+   -webkit-transform: rotateX(180deg);
+}
