@@ -1,0 +1,53 @@
+/* @import url('./globals.css'); */
+
+
+.images {
+  width: 100%;
+  height: auto;
+}
+.carousel_image {
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+/* --------------------------- Home - Offer Card -------------------------------- */
+.OfferCard::before,
+.OfferCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.3);
+  transition: 0.5s ease-out;
+  -webkit-transition: 0.5s ease-out;
+  visibility: hidden;
+  z-index: 10;
+}
+.OfferCard:hover::after {
+  visibility: visible;
+  bottom: 50%;
+  top: 50%;
+}
+.OfferCard:hover::before {
+  visibility: visible;
+  left: 50%;
+  right: 50%;
+  transform: scaleX(0);
+}
+
+/* -------------------- Home - product_types -------------------------- */
+.product_types {
+  cursor: pointer;
+}
+.product_types.active,
+.product_types:hover {
+  color: var(--color-browm);
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+}

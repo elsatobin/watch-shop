@@ -1,0 +1,70 @@
+{
+	"id": "12",
+	"brand": "Girard-Perregaux",
+	"model": "WW.TC",
+	"name": "Girard-Perregaux WW.TC Chronograph",
+	"quantity": 3,
+	"rate": 4.7,
+	"description": "The Girard-Perregaux WW.TC is a unique and sophisticated watch with a complex mechanism and a bold design.",
+	"price": 16999.99,
+	"endprice": null,
+	"discount": null,
+	"filter": "top rated",
+	"images": [
+		"/assist/images/pro-watch-3.png",
+		"/assist/images/pro-watch-2.png",
+		"/assist/images/pro-watch-3.png",
+		"/assist/images/pro-watch-4.png"
+	],
+	"colors": [
+		{ "name": "gold", "code": "#ffd700" },
+		{ "name": "rose gold", "code": "#bf816a" }
+	],
+	"highlights": [
+		"Quartz movement for accurate timekeeping",
+		"Water-resistant up to 30 meters for everyday wear",
+		"Sapphire crystal for scratch resistance",
+		"Stainless steel case and band for durability",
+		"Roman numeral markers for a classic look",
+		"Blue sword-shaped hands for a touch of elegance"
+	],
+	"overview": "Cartier is a French luxury goods brand that was founded in 1847. The company designs, manufactures, distributes, and services high-quality jewelry and watches for both men and women. The Tank collection is one of Cartier's most popular watch collections, known for its unique rectangular case design. The Tank Solo features a quartz movement, water-resistance up to 30 meters, and a sapphire crystal for scratch resistance. It also has Roman numeral markers and blue sword-shaped hands for a classic yet elegant look.",
+	"specs": {
+		"movement": "Quartz",
+		"case_shape": "Rectangular",
+		"case_material": "Stainless Steel",
+		"style": "Luxury",
+		"department": "Unisex",
+		"dial_color": "White",
+		"case_size": "34.8 mm x 27.4 mm",
+		"face_material": "Sapphire Crystal",
+		"features": ["Date Display"],
+		"band_closure": "Deployment Clasp",
+		"band_color": "Silver",
+		"band_material": "Stainless Steel",
+		"face_shape": "Rectangular",
+		"face_type": "Analog",
+		"water_resistance": "30 meters"
+	},
+	"reviews": [
+		{
+			"name": "Emily Johnson",
+			"rating": 4,
+			"title": "Beautiful Watch",
+			"review": "The Cartier Tank Solo is a beautiful watch. The rectangular shape is unique and eye-catching. The only downside is the price."
+		},
+		{
+			"name": "Mark Smith",
+			"rating": 3,
+			"title": "Not for Everyone",
+			"review": "The Cartier Tank Solo is a well-made watch, but the rectangular shape may not be for everyone. It also runs a bit small."
+		},
+		{
+			"name": "Sarah Williams",
+			"rating": 5,
+			"title": "Love this Watch",
+			"review": "I absolutely love my Cartier Tank Solo. It's a classic watch that goes with anything. The rectangular shape is what makes it stand out from other watches."
+		}
+	],
+	"included_items": ["Watch", "Warranty Card"]
+}
