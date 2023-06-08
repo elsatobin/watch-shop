@@ -130,7 +130,7 @@ function DrawerShopping() {
 									{itemsInCart} {itemsInCart > 1 ? " items" : " item"}
 								</Typography>
 								<Typography variant="h6">
-									${cartItems && itemsInCart_price}
+									${cartItems && itemsInCart_price.toLocaleString()}
 								</Typography>
 							</Stack>
 							<Stack

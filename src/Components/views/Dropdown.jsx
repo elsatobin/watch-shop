@@ -51,7 +51,7 @@ export default function Dropdown(options) {
 				aria-label="select merge strategy"
 				// aria-haspopup="menu"
 				onClick={handleToggle}
-				sx={{ color: "white" }}
+				sx={{ color: "text.secondary" }}
 			>
 				{options.data[selectedIndex].img}
 				{options.data[selectedIndex].name}
@@ -81,21 +81,22 @@ export default function Dropdown(options) {
 
 							// sx={{position:"absolute"}}
 						>
-							{options.data.map((option, index) => (
-								<MenuItem
-									key={option.name}
-									selected={index === selectedIndex}
-									onClick={(event) =>
-										handleMenuItemClick(event, index)
-									}
-									anchorOrigin={{
-										vertical: "bottom",
-										horizontal: "left",
-									}}
-								>
-									{option.img} {option.name}
-								</MenuItem>
-							))}
+							{options &&
+								options.data.map((option, index) => (
+									<MenuItem
+										key={option.name}
+										selected={index === selectedIndex}
+										onClick={(event) =>
+											handleMenuItemClick(event, index)
+										}
+										anchorOrigin={{
+											vertical: "bottom",
+											horizontal: "left",
+										}}
+									>
+										{option.img} {option.name}
+									</MenuItem>
+								))}
 						</MenuList>
 					</ClickAwayListener>
 				</Paper>

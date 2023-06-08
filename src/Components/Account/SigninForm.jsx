@@ -1,18 +1,15 @@
-"use client"
+"use client";
+import { useState } from "react";
 import {
 	Box,
 	TextField,
 	FormControlLabel,
-	Radio,
-	Typography,
 	Button,
 	Stack,
 	Checkbox,
 } from "@mui/material";
 
-import { AccountCircle, Email, LockPerson } from "@mui/icons-material";
-import { useState } from "react";
-import Link from "next/link";
+import { Email, LockPerson } from "@mui/icons-material";
 
 // const signupSchema = object({
 // 	name: string().min(1, "Name is required").max(12),
@@ -36,28 +33,13 @@ export default function SugninForm() {
 	const [formInput, setFormInput] = useState({
 		email: "",
 		password: "",
-
 		showPassword: false,
-		showPasswordC: false,
 	});
 
 	console.log(formInput);
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
-
-		// let data = { formInput };
-
-		// fetch("https://pointy-gauge.glitch.me/api/form", {
-		// 	method: "POST",
-		// 	body: JSON.stringify(data),
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((response) => console.log("Success:", JSON.stringify(response)))
-		// 	.catch((error) => console.error("Error:", error));
 	};
 
 	const handleInput = (ev) => {
@@ -87,50 +69,52 @@ export default function SugninForm() {
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
 						<Email sx={{ color: "action.active", mr: 1, my: 0.5 }} />
 						<TextField
-							helperText="Please enter your email"
-							id="register_email"
+							// helperText="Please enter your email"
+							id="signin_email"
 							label="Email"
 							variant="standard"
 							name="email"
 							defaultValue={formInput.email ?? ""}
 							onChange={handleInput}
 							fullWidth
+							required
 						/>
 					</Box>
+					
 
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
 						<LockPerson sx={{ color: "action.active", mr: 1, my: 0.5 }} />
 						<TextField
-							id="register_passwrd"
+							id="signin_passwrd"
 							label="Password"
 							variant="standard"
 							name="password"
-							type="password"
+							type={formInput.showPassword ? "text" : "password"}
 							defaultValue={formInput.password ?? ""}
 							onChange={handleInput}
+							fullWidth
+							required
 						/>
 					</Box>
 
 					<FormControlLabel
 						control={<Checkbox />}
 						labelPlacement="end"
-						name="terms"
+						name="showPassword"
 						onChange={handleInput}
-						checked={formInput.terms ?? ""}
+						checked={formInput.showPassword ?? ""}
 						label="show Password"
-						required
 					/>
-					<Link href="#">Forget Your Passwrd?</Link>
 				</Stack>
 
-				<Button variant="contained" type="submit">
+				<Button
+					variant="contained"
+					type="submit"
+					sx={{ mx: "auto", display: "block" }}
+				>
 					Submit
 				</Button>
 			</Box>
-
-			<Typography variant="subtitle2" mt={4}>
-				Not Have an account? <Link href="#">Register</Link>{" "}
-			</Typography>
 		</>
 	);
 }

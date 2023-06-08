@@ -61,6 +61,8 @@ function ProductCard({ item }) {
 						className="img-fit"
 						width={210}
 						height={210}
+						placeholder="blur"
+						blurDataURL={item.images[0]}
 					/>
 				</Link>
 
@@ -82,11 +84,11 @@ function ProductCard({ item }) {
 								textDecoration: item.discount && "line-through",
 							}}
 						>
-							${item.price}
+							${item.price.toLocaleString()}
 						</Typography>
 						{item.discount && (
 							<Typography variant="h5" color="primary">
-								${item.end_price}
+								${item.end_price.toLocaleString()}
 							</Typography>
 						)}
 					</Stack>

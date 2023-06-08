@@ -4,31 +4,31 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { Box, InputBase, Stack, Container } from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
 
 import { languages, curancy } from "@/utility/data";
 import Dropdown from "../views/Dropdown";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
-	borderRadius: theme.shape.borderRadius,
+	borderRadius: "4px",
+	boxShadow: "0 0 4px 1px rgb(0 0 0 / 48%)",
 	backgroundColor: alpha(theme.palette.common.white, 0.15),
 	"&:hover": {
 		backgroundColor: alpha(theme.palette.common.white, 0.25),
 	},
-	marginRight: theme.spacing(2),
-	marginLeft: 0,
 	width: "100%",
 	[theme.breakpoints.up("sm")]: {
-		marginLeft: theme.spacing(3),
+		marginLeft: "auto",
 		width: "auto",
+		maxWidth: "350px",
 	},
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
-	padding: theme.spacing(0, 2),
+	padding: theme.spacing(0, 1),
 	height: "100%",
 	position: "absolute",
+	right: 0,
 	pointerEvents: "none",
 	display: "flex",
 	alignItems: "center",
@@ -38,15 +38,16 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	color: "inherit",
 	"& .MuiInputBase-input": {
-		padding: theme.spacing(1, 1, 1, 0),
+		padding: theme.spacing(1, 1, 1, 2),
 		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+		paddingRight: `calc(1em + ${theme.spacing(2)})`,
 		transition: theme.transitions.create("width"),
 		width: "100%",
 		[theme.breakpoints.up("md")]: {
 			width: "20ch",
 		},
 	},
+	paddingRight: "20px",
 }));
 
 export default function PrimarySearchAppBar() {
@@ -77,28 +78,45 @@ export default function PrimarySearchAppBar() {
 	};
 
 	return (
-		<Box minHeight={59}>
-			<Container sx={{ position: "relative", minHeight: 59 }}>
-				<Box display="flex" justifyContent="space-between" marginY={1}>
-					<Stack direction="row" gap={3} alignItems="center">
-						<Dropdown data={languages} />
-						<Stack direction="row" alignItems="center">
-							Curancy
-							<Dropdown data={curancy} />
-						</Stack>
-					</Stack>
+		<Container>
+			<Box
+				display="flex"
+				justifyContent="space-between"
+				marginY={1}
+				flexWrap={{ xs: "wrap", sm: "nowrap" }}
+			>
+				<Stack
+					direction="row"
+					gap={3}
+					alignItems="center"
+					justifyContent="space-between"
+					width={{ xs: "100%", sm: "fit-content" }}
+				>
+					{/* render languages in dropdown component ----------- */}
+					<Dropdown data={languages} />
 
-					<Search>
-						<SearchIconWrapper>
-							<SearchIcon />
-						</SearchIconWrapper>
-						<StyledInputBase
-							placeholder="Search…"
-							inputProps={{ "aria-label": "search" }}
-						/>
-					</Search>
-				</Box>
-			</Container>
-		</Box>
+					<Stack
+						direction="row"
+						alignItems="center"
+						color="text.secondary" fontSize="12px"
+					>
+						Curancy
+						{/* render languages in dropdown component ----------- */}
+						<Dropdown data={curancy} />
+					</Stack>
+				</Stack>
+
+				<Search>
+					<SearchIconWrapper>
+						<SearchIcon />
+					</SearchIconWrapper>
+
+					<StyledInputBase
+						placeholder="Search…"
+						inputProps={{ "aria-label": "search" }}
+					/>
+				</Search>
+			</Box>
+		</Container>
 	);
 }

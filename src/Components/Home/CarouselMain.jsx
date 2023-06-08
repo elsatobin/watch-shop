@@ -20,7 +20,7 @@ import image_3 from "../../images/slider-26.jpg";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import classes from "../../styles/Home.module.css";
+import classes from "../../styles/home.module.css";
 import { motion } from "framer-motion";
 
 

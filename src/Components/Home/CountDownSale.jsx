@@ -7,7 +7,8 @@ import Image from "next/image";
 import bannerImg from "../../images/banner-27.jpg";
 import deals_3Img from "../../images/deals-3.png";
 
-import style from "../../styles/Home.module.css";
+
+// import style from "../../styles/home.module.css";
 
 export default function CountDownSale() {
 	return (
@@ -18,11 +19,9 @@ export default function CountDownSale() {
 			// className={style.down_sale_section} height="100%"
 		>
 			<Image
-				src={bannerImg.src}
-				alt=""
-				blurDataURL={bannerImg.blurDataURL}
-				// placeholder="blur"
-				// blurDataURL
+				src={bannerImg}
+				alt="Hot Deal! Sale"
+				placeholder="blur"
 				draggable={false}
 				fill
 			/>

@@ -1,6 +1,7 @@
+"use client";
+
 import {
 	Box,
-	FormControl,
 	TextField,
 	RadioGroup,
 	FormControlLabel,
@@ -13,7 +14,6 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { useState } from "react";
-import Link from "next/link";
 import { AccountCircle, Email, LockPerson } from "@mui/icons-material";
 
 // const signupSchema = object({
@@ -29,6 +29,17 @@ import { AccountCircle, Email, LockPerson } from "@mui/icons-material";
 // 	message: "Passwords do not match",
 // });
 
+const InitialValue = {
+	fName: "",
+	lName: "",
+	email: "",
+	password: "",
+	passConfirm: "",
+	gender: "",
+	terms: false,
+	showPassword: false,
+};
+
 export default function RegisterForm() {
 	// const [formInput, setFormInput] = useReducer(
 	// 	(state, newState) => ({ ...state, ...newState }),
@@ -43,9 +54,12 @@ export default function RegisterForm() {
 		passConfirm: "",
 		gender: "",
 		terms: false,
+		showPassword: false,
 	});
-
 	console.log(formInput);
+
+	// reset form ---------------------------------------
+	const resetForm = () => setFormInput(InitialValue);
 
 	const handleSubmit = (evt) => {
 		evt.preventDefault();
@@ -85,141 +99,146 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<>
-			<Box component="form" autoComplete="off">
-				<Grid container spacing={2}>
-					<Grid xs={12} md={6}>
-						<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-							<AccountCircle
-								sx={{ color: "action.active", mr: 1, my: 0.5 }}
-							/>
-							<TextField
-								id="register_fName"
-								label="First Name"
-								variant="standard"
-								name="fName"
-								// value={formInput.fName}
-								onChange={handleInput}
-								defaultValue={formInput.fName ?? ""}
-							/>
-						</Box>
-					</Grid>
-
-					<Grid xs={12} md={6}>
-						<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-							<AccountCircle
-								sx={{ color: "action.active", mr: 1, my: 0.5 }}
-							/>
-							<TextField
-								id="register_lName"
-								label="Last Name"
-								variant="standard"
-								// color="success"
-								name="lName"
-								defaultValue={formInput.lName ?? ""}
-								onChange={handleInput}
-							/>
-						</Box>
-					</Grid>
-
-					<Grid xs={12}>
-						<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-							<Email sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-							<TextField
-								helperText="Please enter your email"
-								id="register_email"
-								label="Email"
-								variant="standard"
-								name="email"
-								defaultValue={formInput.email ?? ""}
-								onChange={handleInput}
-								fullWidth
-							/>
-						</Box>
-					</Grid>
-
-					<Grid xs={12} md={6}>
-						<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-							<LockPerson
-								sx={{ color: "action.active", mr: 1, my: 0.5 }}
-							/>
-							<TextField
-								id="register_passwrd"
-								label="Password"
-								variant="standard"
-								name="password"
-								type="password"
-								defaultValue={formInput.password ?? ""}
-								onChange={handleInput}
-							/>
-						</Box>
-					</Grid>
-
-					<Grid xs={12} md={6}>
-						<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-							<LockPerson
-								sx={{ color: "action.active", mr: 1, my: 0.5 }}
-							/>
-							<TextField
-								id="register_passConfirm"
-								label="Password Confirmation"
-								variant="standard"
-								name="passConfirm"
-								type="password"
-								defaultValue={formInput.passConfirm ?? ""}
-								onChange={handleInput}
-								// color="success"
-							/>
-						</Box>
-					</Grid>
-
-					<Grid xs={12}>
-						<Typography variant="subtitle1">Gender *</Typography>
-						<RadioGroup
-							row
-							aria-labelledby="gender"
-							name="gender"
-							value={formInput.gender ?? ""}
-							onChange={handleInput}
-						>
-							<FormControlLabel
-								value="male"
-								control={<Radio />}
-								label="Male"
-							/>
-							<FormControlLabel
-								value="female"
-								control={<Radio />}
-								label="Female"
-							/>
-						</RadioGroup>
-
-						<FormControlLabel
-							control={<Checkbox />}
-							labelPlacement="end"
-							name="terms"
-							onChange={handleInput}
-							checked={formInput.terms ?? ""}
-							label="I have read and accept Terms"
-							required
+		<Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+			<Grid container spacing={2}>
+				<Grid xs={12} md={6}>
+					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+						<AccountCircle
+							sx={{ color: "action.active", mr: 1, my: 0.5 }}
 						/>
-					</Grid>
+						<TextField
+							id="register_fName"
+							label="First Name"
+							variant="standard"
+							name="fName"
+							// value={formInput.fName}
+							onChange={handleInput}
+							defaultValue={formInput.fName ?? ""}
+							fullWidth
+						/>
+					</Box>
 				</Grid>
 
-				<Stack direction="row" gap={4} mt={3} justifyContent="center">
-					<Button variant="contained" type="submit">
-						Submit
-					</Button>
+				<Grid xs={12} md={6}>
+					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+						<AccountCircle
+							sx={{ color: "action.active", mr: 1, my: 0.5 }}
+						/>
+						<TextField
+							id="register_lName"
+							label="Last Name"
+							variant="standard"
+							// color="success"
+							name="lName"
+							defaultValue={formInput.lName ?? ""}
+							onChange={handleInput}
+							fullWidth
+						/>
+					</Box>
+				</Grid>
 
-					<Button variant="contained" type="reset">
-						Clear
-					</Button>
-				</Stack>
-			</Box>
+				<Grid xs={12}>
+					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+						<Email sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+						<TextField
+							id="register_email"
+							label="Email"
+							variant="standard"
+							name="email"
+							defaultValue={formInput.email ?? ""}
+							onChange={handleInput}
+							fullWidth
+							required
+						/>
+					</Box>
+				</Grid>
 
-			<Typography variant="subtitle2" mt={4}>
-				Already Registerd? <Link href="#">SIGN IN</Link>{" "}
-			</Typography>
-		</>
+				<Grid xs={12} md={6}>
+					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+						<LockPerson sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+						<TextField
+							id="register_passwrd"
+							label="Password"
+							variant="standard"
+							name="password"
+							type={formInput.showPassword ? "text" : "password"}
+							defaultValue={formInput.password ?? ""}
+							onChange={handleInput}
+							fullWidth
+							required
+						/>
+					</Box>
+				</Grid>
+
+				<Grid xs={12} md={6}>
+					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+						<LockPerson sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+						<TextField
+							id="register_passConfirm"
+							label="Password Confirmation"
+							variant="standard"
+							name="passConfirm"
+							type={formInput.showPassword ? "text" : "password"}
+							defaultValue={formInput.passConfirm ?? ""}
+							onChange={handleInput}
+							fullWidth
+						/>
+					</Box>
+				</Grid>
+
+				<Grid xs={12}>
+					<FormControlLabel
+						control={<Checkbox />}
+						labelPlacement="end"
+						name="showPassword"
+						onChange={handleInput}
+						checked={formInput.showPassword ?? ""}
+						label="show Password"
+					/>
+				</Grid>
+
+				<Grid xs={12}>
+					<Typography variant="subtitle1">Gender *</Typography>
+					<RadioGroup
+						row
+						aria-labelledby="gender"
+						name="gender"
+						value={formInput.gender ?? ""}
+						onChange={handleInput}
+					>
+						<FormControlLabel
+							value="male"
+							control={<Radio />}
+							label="Male"
+						/>
+						<FormControlLabel
+							value="female"
+							control={<Radio />}
+							label="Female"
+						/>
+					</RadioGroup>
+
+					<FormControlLabel
+						control={<Checkbox />}
+						labelPlacement="end"
+						name="terms"
+						onChange={handleInput}
+						checked={formInput.terms ?? ""}
+						label="I have read and accept Terms"
+						required
+					/>
+				</Grid>
+			</Grid>
+
+			<Stack direction="row" gap={4} mt={3} justifyContent="center">
+				<Button variant="contained" type="submit">
+					Submit
+				</Button>
+
+				<Button variant="contained" type="reset" onClick={resetForm}>
+					Clear
+				</Button>
+			</Stack>
+		</Box>
 	);
 }

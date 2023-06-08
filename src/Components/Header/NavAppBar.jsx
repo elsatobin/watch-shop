@@ -19,44 +19,34 @@ import { Menu } from "@mui/icons-material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { navItems } from "@/utility/data";
 import ThemeToggle from "./ThemeToggle";
 import DrawerShopping from "../Cart/DrawerShopping";
 import DrawerFavorite from "../FavoriteList/DrawerFavorite";
 import AccountMenuSigned from "./AccountMenuSigned";
 import AccountMenuUnSigned from "./AccountMenuUnSigned";
+import { navItems } from "@/utility/data";
+
+import { useScroll } from "framer-motion";
+import axios from "axios";
 
 const drawerWidth = 240;
 
-// console.log(window.scrollY);
-// تثبيت ال navBar في الاعلى بعد ال scroll ------------------------------------
-// import { useScrollTrigger } from 'react-scroll';
 
-// export default function Layout(props) {
-//   const trigger = useScrollTrigger({
-//     threshold: 100 // يحدد عدد البيكسلات الذي يجب تمريرها قبل تثبيت الـ navbar
-//   });
-
-//   return (
-//     <div>
-//       <nav className={trigger ? 'navbar fixed' : 'navbar'}>
-//         {/* يمكنك وضع العناصر الخاصة بالـ navbar هنا */}
-//       </nav>
-//       </div>)};
-// -------------------------------------------------------------------------------
 
 export default function NavAppBar(props) {
 	const [isSigned, setisSigned] = useState(false);
 
-	// tabs --------------------------------------  start
+	// handel tabs --------------------------------------  start
 	const pathname = usePathname();
-	console.log(pathname);
-	const [value, setValue] = useState(
-		navItems.findIndex((tap) => pathname.startsWith(tap.href || "/#shop")) ||
-			0
-	);
+	console.log("pathname ", pathname);
 
+	const [value, setValue] = useState(
+		navItems
+			.filter((e) => e.href !== "/")
+			.findIndex((tap) => pathname.startsWith(tap.href)) + 1 || 0
+	);
 	console.log("value ", value);
+
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
@@ -70,16 +60,15 @@ export default function NavAppBar(props) {
 		setMobileOpen((prevState) => !prevState);
 	};
 
-	// scroll -------------------------------
-	const [fixScroll, setfixScroll] = useState(false);
-	function handelFixScroll() {
-		setfixScroll(window.scrollY >= 65 ? true : false);
-	}
-
+	// fixed nav when scroll -------------------------------
+	const [fixNav, setFixNav] = useState(false);
+	const { scrollYProgress } = useScroll();
 	useEffect(() => {
-		// window.addEventListener("scroll", handelFixScroll);
-		// return window.removeEventListener("scroll", handelFixScroll);
-	}, []);
+		return scrollYProgress.on("change", (latestValue) => {
+			console.log(scrollYProgress);
+			latestValue > 0.035 ? setFixNav(true) : setFixNav(false);
+		});
+	}, [scrollYProgress]);
 
 	const drawer = (
 		<Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -98,7 +87,7 @@ export default function NavAppBar(props) {
 			>
 				{navItems &&
 					navItems.map((navLink, i) =>
-						navLink.label.toLowerCase === "Shop" ? (
+						navLink.label.toLowerCase() === "shop" ? (
 							<Tab
 								key={i + i + navLink}
 								label={navLink.label}
@@ -124,10 +113,13 @@ export default function NavAppBar(props) {
 
 	return (
 		<Box>
-			<Box height={{ xs: "56px", sm: "64px" }}></Box>
+			<Box
+				display={fixNav ? "block" : "none"}
+				height={{ xs: "56px", sm: "64px" }}
+			></Box>
 			<AppBar
 				component="nav"
-				sx={{ position: "fixed", top: "0" }}
+				sx={{ position: fixNav ? "fixed" : "relative", top: "0" }}
 				color="pwhite"
 			>
 				<Container>
@@ -151,7 +143,7 @@ export default function NavAppBar(props) {
 							>
 								{navItems &&
 									navItems.map((navLink, i) =>
-										navLink.label.toLowerCase === "Shop" ? (
+										navLink.label.toLowerCase() === "shop" ? (
 											<Tab
 												key={i + i + navLink}
 												label={navLink.label}

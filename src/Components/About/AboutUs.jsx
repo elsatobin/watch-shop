@@ -6,8 +6,6 @@ import {
 	Container,
 	Stack,
 	Typography,
-	styled,
-	Paper,
 } from "@mui/material/";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -93,7 +91,7 @@ export default function AboutUs() {
 						</Stack>
 
 						<Stack height="100%">
-							<Image src={about_us_img} alt="About us" />
+							<Image src={about_us_img} alt="About us" priority />
 						</Stack>
 					</Stack>
 				</Box>
@@ -172,7 +170,7 @@ export default function AboutUs() {
 					<Grid xs={12} md={8} overflow="hidden">
 						<Box overflow="hidden">
 							<Image
-								className="images"
+								className="img-fit"
 								src={banner_img1}
 								alt="offer bunner"
 							/>
@@ -181,7 +179,7 @@ export default function AboutUs() {
 					<Grid xs={12} md={4} overflow="hidden">
 						<Box>
 							<Image
-								className="images"
+								className="img-fit"
 								src={banner_img2}
 								alt="offer bunner"
 							/>
@@ -189,7 +187,7 @@ export default function AboutUs() {
 					</Grid>
 				</Grid>
 			</Container>
-			{/* Swipper Articales component */}
+			{/* Swipper Articales component --------------------------- */}
 			<SwipperArticales />
 		</Fragment>
 	);

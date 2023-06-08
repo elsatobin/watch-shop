@@ -1,10 +1,9 @@
-"use client";
+// "use client";
 import {
 	Box,
 	Container,
 	Typography,
 	Card,
-	CardMedia,
 	CardContent,
 	Stack,
 } from "@mui/material/";
@@ -17,7 +16,7 @@ import { FaFacebookF } from "react-icons/fa"
 import Image from "next/image";
 import { team_members } from "@/utility/data";
 
-import classes from "@/styles/About.module.css";
+import classes from "@/styles/about.module.css";
 
 export default function TeamMembers() {
 	return (

@@ -1,30 +1,19 @@
 "use client";
-import React, { useRef, useState } from "react";
-import {
-	Container,
-	Rating,
-	Stack,
-	Typography,
-} from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Container, Rating, Stack, Typography } from "@mui/material/";
 
 import { FormatQuote } from "@mui/icons-material";
-
-import Link from "next/link";
 
 // import required Swiper modules
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 
-
 // Import Swiper styles
 import "../../../node_modules/swiper/swiper.css";
 import "../../../node_modules/swiper/swiper-bundle.css";
-import { testimonials } from "@/utility/data";
 
 SwiperCore.use([Navigation]);
 
-// import { testimonials } from "../../Utility/data";
+import { testimonials } from "@/utility/data";
 
 export default function SwipperArticales() {
 	return (

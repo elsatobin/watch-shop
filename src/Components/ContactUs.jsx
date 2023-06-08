@@ -10,8 +10,7 @@ import {
 } from "@mui/material/";
 import Grid from "@mui/material/Unstable_Grid2";
 
-
-import { Send } from "@mui/icons-material"
+import { Send } from "@mui/icons-material";
 
 export default function ContactUs() {
 	return (

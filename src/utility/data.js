@@ -43,7 +43,7 @@ export const curancy = [
 
 export const navItems = [
 	{ label: "Home", href: "/" },
-	{ label: "Shop", href: "/#shop" },
+	{ label: "Shop", href: "/shop" },
 	{ label: "Blog", href: "/blog" },
 	{ label: "About us", href: "/about" },
 	{ label: "Contact us", href: "/contact" },

@@ -10,9 +10,8 @@ import {
 	Paper,
 	Popper,
 } from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaUser } from "react-icons/fa";
 
 export default function AccountMenuUnSigned() {
@@ -40,14 +39,6 @@ export default function AccountMenuUnSigned() {
 		}
 	}
 
-	// return focus to the button when we transitioned from !open -> open
-	// const prevOpen = useRef(open);
-	// useEffect(() => {
-	// 	if (prevOpen.current === true && open === false) {
-	// 		anchorRef.current.focus();
-	// 	}
-	// 	prevOpen.current = open;
-	// }, [open]);
 
 	return (
 		<Box>
@@ -90,9 +81,10 @@ export default function AccountMenuUnSigned() {
 									onKeyDown={handleListKeyDown}
 									onClick={handleClose}
 								>
-									<MenuItem component={Link} href="/account/signin">
-										Signin
+									<MenuItem>
+										<Link href="/account/signin">Signin</Link>
 									</MenuItem>
+
 									<MenuItem>
 										<Link href="/account/register">Register</Link>
 									</MenuItem>
@@ -104,23 +96,4 @@ export default function AccountMenuUnSigned() {
 			</Popper>
 		</Box>
 	);
-}
-{
-	/* <List>
-	<ListItem disablePadding>
-		<Link href="/account/signin" >
-			<ListItemButton>
-				<ListItemText primary="Sign In" />
-			</ListItemButton>
-		</Link>
-	</ListItem>
-
-	<ListItem disablePadding>
-		<Link href="/account/register" style={{ width: "100%" }}>
-			<ListItemButton>
-				<ListItemText primary="Register" />
-			</ListItemButton>
-		</Link>
-	</ListItem>
-</List>; */
 }

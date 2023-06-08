@@ -17,7 +17,7 @@ import { KeyboardDoubleArrowRight } from "@mui/icons-material";
 import Link from "next/link";
 import Image from "next/image";
 
-import classes from "../styles/Blog.module.css";
+import classes from "../styles/blog.module.css";
 import { blogs } from "../utility/data";
 import { motion } from "framer-motion";
 
@@ -82,7 +82,8 @@ export default function Blog() {
 										<Image
 											src={blg.img}
 											alt={blg.title}
-											className="images"
+											placeholder="blur"
+											className="img-fit"
 										/>
 									</Link>
 									<CardContent>
