@@ -2,7 +2,7 @@
 import { Card, CardActionArea } from "@mui/material/";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import style from "@/styles/Home.module.css";
+import style from "../../styles/home.module.css";
 
 import watch_img_1 from "@/images/watch-1.png";
 import watch_img_2 from "@/images/watch-2.png";

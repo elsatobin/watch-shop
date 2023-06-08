@@ -11,11 +11,6 @@ import ScrollToTopBtn from "@/Components/Helpers/ScrollToTopBtn";
 import { StoreProvider } from "@/context/Store";
 
 
-export const metadata = {
-	title: "Devita Watchs",
-	description:
-		"Online store for selling wristwatches, Developed by MUSTAFA Abutabl",
-};
 
 const RootLayout = ({ children }) => {
 	// const cache = createEmotionCache();
