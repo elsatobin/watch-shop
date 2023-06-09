@@ -34,12 +34,14 @@ import DeliveryReturn from "@/Components/views/DeliveryReturn";
 import ProductSpices from "@/Components/Shop/ProductSpices";
 import ProductsSwiper from "@/Components/Helpers/ProductsSwiper";
 
-export default function ProductDetais() {
+export default function ProductShowDetais({ product }) {
 	const router = useRouter();
 	const pathParams = useParams();
 	console.log(pathParams);
 
-	const [product, setProduct] = useState({});
+	console.log(product);
+	// const [product, setProduct] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [imageIndex, setImageIndex] = useState(0);
 
@@ -53,6 +55,7 @@ export default function ProductDetais() {
 		setSelectedColor(event.target.value);
 	};
 
+	// fetch product data by id
 	// async function getProduct(id) {
 	// 	await axios
 	// 		.get(`/assist/productsData/product_${id || 1}.json`)
@@ -63,45 +66,45 @@ export default function ProductDetais() {
 	// 		.catch((error) => console.error(error));
 	// }
 
-	async function getProduct(id) {
-		const res = await fetch(`/assist/productsData/product_${id}.json`, {
-			cache: "no-store",
-		});
+	// useEffect(() => {
+	// 	async function getProduct(id) {
+	// 		setIsLoading(true);
+	// 		const res = await fetch(`/assist/productsData/product_${id}.json`, {
+	// 			cache: "no-store",
+	// 		});
 
-		if (!res.ok) {
-			// throw new Error("Faild to get data")
-			return notFound();
-		}
+	// 		if (!res.ok) {
+	// 			return notFound();
+	// 		}
 
-		setProduct(res.data);
-		console.log(res);
-		return res.data;
-	}
+	// 		const data = await res.json();
+	// 		setIsLoading(false);
+	// 		setProduct(data);
+	// 		console.log(data);
+	// 	}
+	// 	getProduct(pathParams.productid);
+	// }, [pathParams.productid]);
 
-	//fetch product data from api using axios ----------------------------
-	useEffect(() => {
-		getProduct(pathParams.productid);
-	}, [pathParams.productid]);
-
-
-	
 	// handel add item to cart ------------
 	const { state, dispatch } = useContext(Store);
 	const { favoriteItems } = state;
 
-	function addToCart_handel(item, itemQuntity = 1, selectedColor = 0) {
-		if (!selectedColor) {
+	function addToCart_handel(item, itemQuntity = 1, selectedColor) {
+		if (item.colors && !selectedColor) {
 			setSelectedColorMesage("Please choose color");
 		} else {
 			dispatch({
 				type: "ADD_TO_CART",
 				payload: {
 					...item,
-					id: item.id + "-" + item.colors[selectedColor].code,
+					id: item.colors
+						? item.id + "-" + item.colors[selectedColor].code
+						: item.id,
 					cartQuantity: itemQuntity,
 					cartColor: (item.colors && item.colors[selectedColor]) || "",
 				},
 			});
+			handleClose();
 		}
 	}
 
@@ -122,7 +125,10 @@ export default function ProductDetais() {
 									alt={product.model}
 									width={540}
 									height={540}
-									style={{ maxWidth: "100%", maxHeight: "auto" }}
+									style={{
+										maxWidth: "100%",
+										maxHeight: "auto",
+									}}
 								/>
 							)}
 							{/* discount badge ----------------------------------- */}
@@ -262,7 +268,11 @@ export default function ProductDetais() {
 								defaultValue="warning"
 								value={selectedColor}
 								onChange={handleChange}
-								sx={{ gap: 2, flexWrap: "wrap", flexDirection: "row" }}
+								sx={{
+									gap: 2,
+									flexWrap: "wrap",
+									flexDirection: "row",
+								}}
 							>
 								{product.colors?.map((color, i) => (
 									<Paper

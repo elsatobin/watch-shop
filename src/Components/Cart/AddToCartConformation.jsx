@@ -35,7 +35,6 @@ function AddToCartConformation({ open, setOpen, item }) {
 		setOpen(false);
 		setSelectedColor(null);
 		setItemQuntity(1);
-		setProduct({});
 	};
 
 	const [product, setProduct] = useState({});
@@ -66,15 +65,17 @@ function AddToCartConformation({ open, setOpen, item }) {
 	console.log("cart items ", cartItems);
 	console.log("favorite items ", favoriteItems);
 
-	function addToCart_handel(item, itemQuntity = 1, selectedColor = 0) {
-		if (!selectedColor) {
+	function addToCart_handel(item, itemQuntity = 1, selectedColor) {
+		if (item.colors && !selectedColor) {
 			setSelectedColorMesage("Please choose color");
 		} else {
 			dispatch({
 				type: "ADD_TO_CART",
 				payload: {
 					...item,
-					id: item.id + "-" + item.colors ?? [selectedColor].code,
+					id: item.colors
+						? item.id + "-" + item.colors[selectedColor].code
+						: item.id,
 					cartQuantity: itemQuntity,
 					cartColor: (item.colors && item.colors[selectedColor]) || "",
 				},
@@ -115,9 +116,8 @@ function AddToCartConformation({ open, setOpen, item }) {
 
 				{product.colors && (
 					<Stack direction="row" gap={2} alignItems="center" pt={3}>
-						
 						<Typography variant="h6">Colors</Typography>
-						
+
 						<RadioGroup
 							aria-labelledby="product-color"
 							defaultValue="warning"

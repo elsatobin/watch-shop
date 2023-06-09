@@ -1,7 +1,6 @@
-:root{
+:root {
 	--color-browm: #a8741a;
 }
-
 
 * {
 	box-sizing: border-box;
@@ -29,7 +28,6 @@ input {
 	padding: 10px 16px !important;
 }
 
-
 .img-fit {
 	object-fit: cover;
 	min-width: 100%;
@@ -39,11 +37,21 @@ input {
 	max-height: 100%;
 }
 
-.sign-links{
+.sign-links {
 	text-shadow: 0px 0px 4px white;
 	font-weight: 700;
 	font-size: 16px;
 	color: var(--color-browm);
+}
+
+.loading-style {
+	width: 80%;
+	margin: 50px auto;
+}
+.loading-style a {
+	text-decoration: underline;
+	display: block;
+	text-align: center;
 }
 
 /* hide small unviable bart of drawer */
@@ -92,8 +100,6 @@ footer {
 	/* box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px -1px, rgb(0 0 0 / 14%) 0px 4px 5px 0px, rgb(0 0 0 / 12%) 0px 1px 10px 0px; */
 }
 
-
-
 .glass-bg {
 	backdrop-filter: blur(13px) saturate(197%);
 	-webkit-backdrop-filter: blur(13px) saturate(197%);
@@ -102,8 +108,6 @@ footer {
 	border: 1px solid rgba(255, 255, 255, 0.125);
 	background-size: cover;
 }
-
-
 
 .MuiBackdrop-root {
 	background-color: rgb(0 0 0 / 8%);

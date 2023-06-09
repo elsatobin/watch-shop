@@ -1,28 +1,45 @@
-import axios from "axios";
+// import ProductShowDetais from "@/Components/Shop/ProductShowDetais";
+import Loading from "@/app/loading";
 import dynamic from "next/dynamic";
+import { notFound, useParams } from "next/navigation";
 
-export async function generateMetadata({ params, searchParams }, parent) {
-	const id = params.id;
 
-	const productMeta = await axios
-		.get(`http://localhost:3000/assist/productsData/product_${id || 1}.json`)
-		.then((res) => res.data);
+async function getData(id) {
+	const res = await fetch(
+		`https://devita-watchs.vercel.app/assist/productsData/product_${id}.json`,
+		{ cache: "no-store" }
+	);
+	if (!res.ok) {
+		return notFound();
+	}
 
+	return res.json();
+}
+
+
+
+// export dynamic metadata ---------------------------
+export async function generateMetadata({ params }) {
+	const product = await getData(params.productid);
 	return {
-		title: productMeta && productMeta.title,
-		description: productMeta && productMeta.name,
+		title: product && product.name,
+		description: product && product.name,
 	};
 }
 
-export default function Productid() {
-	const ProductDetais = dynamic(
-		() => import("@/Components/Shop/ProductDetais"),
-		{ loading: () => <p style={{ color: "gray" }}>Loading...</p> }
+export default async function Productid({ params }) {
+	const product = await getData(params.productid);
+	console.log(product);
+
+	const ProductShowDetais = dynamic(
+		() => import("@/Components/Shop/ProductShowDetais"),
+		{ loading: () => <Loading /> }
 	);
 
 	return (
-		<div>
-			<ProductDetais />
-		</div>
+		<section>
+			{/* <ProductDetais /> */}
+			<ProductShowDetais product={product} />
+		</section>
 	);
 }

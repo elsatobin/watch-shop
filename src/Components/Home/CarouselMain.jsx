@@ -10,12 +10,10 @@ import {
 } from "@mui/material/";
 import Grid from "@mui/material/Unstable_Grid2";
 
-
 import Image from "next/image";
 import image_1 from "../../images/slider-24.jpg";
 import image_2 from "../../images/slider-25.jpg";
 import image_3 from "../../images/slider-26.jpg";
-
 
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -23,9 +21,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import classes from "../../styles/home.module.css";
 import { motion } from "framer-motion";
 
-
 import { ButtonBorder } from "../Helpers/GlobalComponents";
-
 
 export default function CarouselMain() {
 	const containerRef = useRef(null);
@@ -51,8 +47,6 @@ export default function CarouselMain() {
 	const [change, setChange] = useState(0);
 	console.log(change);
 
-
-	
 	return (
 		<Box>
 			<Carousel
@@ -64,7 +58,9 @@ export default function CarouselMain() {
 				infiniteLoop
 				useKeyboardArrows={true}
 				showStatus={false}
-				emulateTouch
+				preventMovementUntilSwipeScrollTolerance={true}
+				
+				swipeScrollTolerance={50}
 			>
 				<Box height="100vh">
 					<Image

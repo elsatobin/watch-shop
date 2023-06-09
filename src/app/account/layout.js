@@ -2,7 +2,6 @@
 import { Container, Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-
 export default function AccountLayout({ children }) {
 	return (
 		<section
@@ -21,6 +20,7 @@ export default function AccountLayout({ children }) {
 							elevation={20}
 							className="glass-bg"
 							sx={{
+								backgroundColor: "transparent",
 								backgroundImage: (theme) =>
 									theme.palette.mode === "dark"
 										? "none"

@@ -18,11 +18,6 @@ const RootLayout = ({ children }) => {
 	return (
 		<html lang="en" className="no-touch">
 			<head>
-				<title>Devita Watchs</title>
-				<meta
-					name="description"
-					content="Online store for selling wristwatches, Developed by MUSTAFA Abutabl"
-				/>
 				<link rel="icon" href="/icon.png" />
 			</head>
 			{/* <CacheProvider value={cache}> */}

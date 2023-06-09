@@ -10,7 +10,8 @@ import {
 } from "@mui/material/";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { Send } from "@mui/icons-material";
+import { Call, Email, LocationCity, Send } from "@mui/icons-material";
+import Link from "next/link";
 
 export default function ContactUs() {
 	return (
@@ -24,7 +25,7 @@ export default function ContactUs() {
 				<Grid container spacing={2}>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6">Address</Typography>
+							<Typography variant="h6"> <LocationCity /> Address</Typography>
 							<Typography variant="body1">
 								You address will be here Lorem Ipsum text
 							</Typography>
@@ -32,11 +33,12 @@ export default function ContactUs() {
 					</Grid>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6">Phone</Typography>
+							<Typography variant="h6"> <Call /> Phone </Typography>
 							<Typography
 								variant="body1"
-								component="a"
+								component={Link}
 								href="tel:+201234567890"
+								aria-label="Send email to our company"
 							>
 								01234 567 890
 							</Typography>
@@ -51,18 +53,20 @@ export default function ContactUs() {
 					</Grid>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6">Web</Typography>
+							<Typography variant="h6"> <Email/> Emails</Typography>
 							<Typography
 								variant="body1"
-								component="a"
-								href="tel:+201234567890"
+								component={Link}
+								href="mailto:info@example.com"
+								aria-label="Send email to our company"
 							>
 								info@example.com
 							</Typography>
 							<Typography
 								variant="body1"
 								component="a"
-								href="tel:+201234567890"
+								href="mailto:info@example.com"
+								aria-label="Send email to our company"
 							>
 								info@example.com
 							</Typography>
@@ -134,11 +138,7 @@ export default function ContactUs() {
 				</Stack>
 
 				<Stack direction="row" justifyContent="center">
-					<Button
-						variant="contained"
-						endIcon={<Send />}
-						sx={{ width: "50%" }}
-					>
+					<Button variant="contained" endIcon={<Send />} sx={{ width: "50%" }}>
 						Send
 					</Button>
 				</Stack>

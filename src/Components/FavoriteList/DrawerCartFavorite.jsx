@@ -19,6 +19,7 @@ import emptyImg from "../../images/empty-wishlist.svg";
 import { motion } from "framer-motion";
 import { Store } from "@/context/Store";
 import AddToCartConformation from "../Cart/AddToCartConformation";
+import Link from "next/link";
 
 // framer - motion animation edit ---------------------------
 const container = {
@@ -95,16 +96,21 @@ export default function DrawerCartFavorite({ open }) {
 							variants={item}
 							sx={{ display: "flex", overflow: "hidden" }}
 						>
-							{console.log(product)}
-							<Box alignSelf="center" width="100px" height="100%">
-								<Image
-									src={product.images && product.images[0]}
-									alt={product && product.name}
-									height={100}
-									width={100}
-									className="img-fit"
-								></Image>
-							</Box>
+							{console.log(
+								typeof product.id !== "number" &&
+									product.id.split("-")[0]
+							)}
+							<Link href={`/shop/${product.id}`}>
+								<Box alignSelf="center" width="100px" height="100%">
+									<Image
+										src={product.images && product.images[0]}
+										alt={product && product.name}
+										height={100}
+										width={100}
+										className="img-fit"
+									/>
+								</Box>
+							</Link>
 
 							<Stack flexGrow={1} padding="10px">
 								<Typography

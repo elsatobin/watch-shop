@@ -133,7 +133,15 @@ export default function Footer() {
 				<Stack py={2}>
 					<Typography variant="body1" color="gray" textAlign="center">
 						Copyright © Devita. All Right Reserved.
-						{new Date().getFullYear()}
+						{new Date().getFullYear()} {" "}
+						Developed by{" "}
+						<Link
+							href="https://e-mustafa.github.io/portfolio/"
+							target="_blank" 
+							style={{textDecoration:"underline"}}
+						>
+							Mustafa Abutabl
+						</Link>
 					</Typography>
 				</Stack>
 			</Container>

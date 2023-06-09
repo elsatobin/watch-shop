@@ -17,7 +17,7 @@ import {
 import { Menu } from "@mui/icons-material";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import ThemeToggle from "./ThemeToggle";
 import DrawerShopping from "../Cart/DrawerShopping";
@@ -27,11 +27,8 @@ import AccountMenuUnSigned from "./AccountMenuUnSigned";
 import { navItems } from "@/utility/data";
 
 import { useScroll } from "framer-motion";
-import axios from "axios";
 
 const drawerWidth = 240;
-
-
 
 export default function NavAppBar(props) {
 	const [isSigned, setisSigned] = useState(false);

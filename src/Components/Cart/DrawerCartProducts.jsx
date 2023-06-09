@@ -17,6 +17,7 @@ import Image from "next/image";
 import emptyImg from "../../images/empty_cart.png";
 import { motion } from "framer-motion";
 import { Store } from "@/context/Store";
+import Link from "next/link";
 const container = {
 	hidden: { opacity: 1, scale: 0 },
 	visible: {
@@ -88,15 +89,23 @@ export default function DrawerCartProducts({ open }) {
 						variants={item}
 						sx={{ display: "flex", overflow: "hidden", flexShrink: 0 }}
 					>
-						<Box alignSelf="center" width="100px" height="100%">
-							<Image
-								src={product.images && product.images[0]}
-								alt={product.name}
-								height={100}
-								width={100}
-								className="img-fit"
-							></Image>
-						</Box>
+						<Link
+							href={`/shop/${
+								typeof product.id === "string"
+									? product.id.split("-")[0]
+									: product.id
+							}`}
+						>
+							<Box alignSelf="center" width="100px" height="100%">
+								<Image
+									src={product.images && product.images[0]}
+									alt={product.name}
+									height={100}
+									width={100}
+									className="img-fit"
+								></Image>
+							</Box>
+						</Link>
 
 						<Stack flexGrow={1} padding="10px">
 							<Typography
@@ -140,22 +149,24 @@ export default function DrawerCartProducts({ open }) {
 								alignItems="center"
 								justifyContent="space-between"
 							>
-								<Tooltip title={product.cartColor.name} arrow>
-									<Paper
-										elevation={3}
-										sx={{
-											position: "relative",
-											width: 25,
-											height: 25,
-											flexShrink: 0,
-											bgcolor: product.cartColor?.code,
-											borderRadius: "50%",
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "center",
-										}}
-									></Paper>
-								</Tooltip>
+								{product.colors && (
+									<Tooltip title={product.cartColor.name} arrow>
+										<Paper
+											elevation={3}
+											sx={{
+												position: "relative",
+												width: 25,
+												height: 25,
+												flexShrink: 0,
+												bgcolor: product.cartColor?.code,
+												borderRadius: "50%",
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+											}}
+										></Paper>
+									</Tooltip>
+								)}
 
 								<Stack direction="row" alignItems="center">
 									<Tooltip title="Decrease quantity" arrow>

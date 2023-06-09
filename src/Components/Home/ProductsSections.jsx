@@ -10,20 +10,31 @@ import ProductCard from "../Helpers/ProductCard";
 
 export default function ProductsSections() {
 	const [products, setProducts] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [getError, setGetError] = useState(false);
 	// filtered products by type
 	const [fProducts, setFProducts] = useState(products && products);
 
 	// get products data from api --------------------------------
 	useEffect(() => {
 		async function getProducts() {
-			await axios
-				.get("/assist/productsData/products.json")
-				.then((res) => {
-					setProducts(res.data);
-					setFProducts(res.data);
-					console.log(res.data);
-				})
-				.catch((error) => console.log(error));
+			setIsLoading(true);
+			const res = await axios(
+				`/assist/productsData/products.json`
+			);
+
+			if (!res.status == 200) {
+				setGetError({ status: true, message: res?.error });
+			}
+
+			const data = await res.data;
+			setIsLoading(false);
+			setGetError(false);
+			setProducts(res.data);
+			setFProducts(res.data);
+			console.log(res.data);
+
+			return data;
 		}
 		getProducts();
 	}, []);
@@ -46,8 +57,6 @@ export default function ProductsSections() {
 			type.target.classList.add("active");
 		}
 	}
-
-
 
 	return (
 		<section>
