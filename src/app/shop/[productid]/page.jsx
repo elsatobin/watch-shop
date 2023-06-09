@@ -16,7 +16,12 @@ async function getData(id) {
 	return res.json();
 }
 
+export async function generateMetadata({ params, searchParams }, parent) {
+	const id = params.id;
 
+	const productMeta = await axios
+		.get(`http://localhost:3000/assist/productsData/product_${id || 1}.json`)
+		.then((res) => res.data);
 
 // export dynamic metadata ---------------------------
 export async function generateMetadata({ params }) {
