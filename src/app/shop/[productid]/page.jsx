@@ -1,7 +1,7 @@
 // import ProductShowDetais from "@/Components/Shop/ProductShowDetais";
 import Loading from "@/app/loading";
 import dynamic from "next/dynamic";
-import { notFound, useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 
 
 async function getData(id) {
@@ -9,19 +9,10 @@ async function getData(id) {
 		`https://devita-watchs.vercel.app/assist/productsData/product_${id}.json`,
 		{ cache: "no-store" }
 	);
-	if (!res.ok) {
-		return notFound();
-	}
-
+	if (!res.ok) { return notFound(); }
 	return res.json();
 }
 
-export async function generateMetadata({ params, searchParams }, parent) {
-	const id = params.id;
-
-	const productMeta = await axios
-		.get(`http://localhost:3000/assist/productsData/product_${id || 1}.json`)
-		.then((res) => res.data);
 
 // export dynamic metadata ---------------------------
 export async function generateMetadata({ params }) {
@@ -31,6 +22,8 @@ export async function generateMetadata({ params }) {
 		description: product && product.name,
 	};
 }
+
+
 
 export default async function Productid({ params }) {
 	const product = await getData(params.productid);
