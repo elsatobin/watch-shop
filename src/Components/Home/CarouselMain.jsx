@@ -1,14 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import {
-	Box,
-	Button,
-	Container,
-	Slide,
-	Stack,
-	Typography,
-} from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Box, Container, Stack, Typography } from "@mui/material/";
 
 import Image from "next/image";
 import image_1 from "../../images/slider-24.jpg";
@@ -48,239 +40,218 @@ export default function CarouselMain() {
 	console.log(change);
 
 	return (
-		<Box>
-			<Carousel
-				showArrows={true}
-				showThumbs={false}
-				// emulateTouch
-				stopOnHover
-				onChange={(e) => setChange(e)}
-				infiniteLoop
-				useKeyboardArrows={true}
-				showStatus={false}
-				preventMovementUntilSwipeScrollTolerance={true}
-				
-				swipeScrollTolerance={50}
-			>
-				<Box height="100vh">
-					<Image
-						src={image_1}
-						alt="Exclusive Offer -10% Off This Week"
-						className={classes.carousel_image}
-						priority={true}
-					/>
-					<Container>
-						<Stack
-							position="absolute"
-							top={0}
-							width="100%"
-							height="100%"
-							flexDirection="colmun"
-							alignItems="start"
-							justifyContent="center"
-							textAlign="start"
-							spacing={4}
-							component={motion.ul}
-							variants={container}
-							initial="hidden"
-							animate={change == 0 ? "visible" : "hidden"}
-							color="#fff"
+		<Carousel
+			showArrows={true}
+			showThumbs={false}
+			// emulateTouch
+			stopOnHover
+			onChange={(e) => setChange(e)}
+			infiniteLoop
+			useKeyboardArrows={true}
+			showStatus={false}
+			preventMovementUntilSwipeScrollTolerance={true}
+			swipeScrollTolerance={50}
+		>
+			<Box height="100vh">
+				<Image
+					src={image_1}
+					alt="Exclusive Offer -10% Off This Week"
+					className={classes.carousel_image}
+					priority={true}
+					placeholder="blur"
+				/>
+				<Container>
+					<Stack
+						position="absolute"
+						top={0}
+						width="100%"
+						height="100%"
+						flexDirection="colmun"
+						alignItems="start"
+						justifyContent="center"
+						textAlign="start"
+						spacing={4}
+						component={motion.ul}
+						variants={container}
+						initial="hidden"
+						animate={change == 0 ? "visible" : "hidden"}
+						color="#fff"
+					>
+						<Typography
+							variant="h5"
+							mr={5}
+							component={motion.li}
+							variants={item}
+							color="primary"
 						>
-							<Typography
-								variant="h5"
-								mr={5}
-								component={motion.li}
-								variants={item}
-								color="primary"
-							>
-								Exclusive Offer -10% Off This Week
-							</Typography>
+							Exclusive Offer -10% Off This Week
+						</Typography>
 
-							<Typography
-								variant="h2"
-								component={motion.li}
-								variants={item}
-							>
-								Blancpain Villeret
-							</Typography>
-							<Typography
-								variant="p"
-								component={motion.li}
-								variants={item}
-							>
-								This elegant day-date from Villeret collection was
-								introduced at Baselworld 2017.
-							</Typography>
-							<Stack
-								direction="row"
-								alignItems="end"
-								component={motion.li}
-								variants={item}
-							>
-								<Typography
-									variant="body2"
-									component="span"
-								></Typography>
-								Starting at &#160;
-								<Typography variant="h3" color="primary">
-									$16.100.99
-								</Typography>
-							</Stack>
-							<Box component={motion.li} variants={item}>
-								<ButtonBorder sx={{ py: "10px" }}>
-									Shopping Now
-								</ButtonBorder>
-							</Box>
-						</Stack>
-					</Container>
-				</Box>
-
-				<Box height="100vh">
-					<Image
-						src={image_2}
-						alt="Exclusive Offer -10% Off This Week"
-						className={classes.carousel_image}
-						priority={true}
-					/>
-					<Container>
-						<Stack
-							position="absolute"
-							top={0}
-							width="100%"
-							height="100%"
-							flexDirection="colmun"
-							alignItems="start"
-							justifyContent="center"
-							textAlign="start"
-							spacing={4}
-							component={motion.ul}
-							variants={container}
-							initial="hidden"
-							animate={change == 1 ? "visible" : "hidden"}
-							color="#fff"
+						<Typography
+							variant="h2"
+							component={motion.li}
+							variants={item}
 						>
-							<Typography
-								variant="h5"
-								mr={5}
-								component={motion.li}
-								variants={item}
-								color="primary"
-							>
-								Exclusive Offer -10% Off This Week
-							</Typography>
-
-							<Typography
-								variant="h2"
-								component={motion.li}
-								variants={item}
-							>
-								Blancpain Villeret
-							</Typography>
-							<Typography
-								variant="p"
-								component={motion.li}
-								variants={item}
-							>
-								This elegant day-date from Villeret collection was
-								introduced at Baselworld 2017.
-							</Typography>
-							<Stack
-								direction="row"
-								alignItems="end"
-								component={motion.li}
-								variants={item}
-							>
-								<Typography
-									variant="body2"
-									component="span"
-								></Typography>
-								Starting at &#160;
-								<Typography variant="h3" color="primary">
-									$16.100.99
-								</Typography>
-							</Stack>
-							<Box component={motion.li} variants={item}>
-								<ButtonBorder sx={{ py: "10px" }}>
-									Shopping Now
-								</ButtonBorder>
-							</Box>
-						</Stack>
-					</Container>
-				</Box>
-
-				<Box height="100vh">
-					<Image
-						src={image_3}
-						alt="Exclusive Offer -10% Off This Week"
-						className={classes.carousel_image}
-						priority={true}
-					/>
-					<Container>
+							Blancpain Villeret
+						</Typography>
+						<Typography variant="p" component={motion.li} variants={item}>
+							This elegant day-date from Villeret collection was
+							introduced at Baselworld 2017.
+						</Typography>
 						<Stack
-							position="absolute"
-							top={0}
-							width="100%"
-							height="100%"
-							flexDirection="colmun"
-							alignItems="start"
-							justifyContent="center"
-							textAlign="start"
-							spacing={4}
-							component={motion.ul}
-							variants={container}
-							initial="hidden"
-							animate={change == 2 ? "visible" : "hidden"}
-							color="#fff"
+							direction="row"
+							alignItems="end"
+							component={motion.li}
+							variants={item}
 						>
-							<Typography
-								variant="h5"
-								mr={5}
-								component={motion.li}
-								variants={item}
-								color="primary"
-							>
-								Exclusive Offer -10% Off This Week
+							<Typography variant="body2" component="span"></Typography>
+							Starting at &#160;
+							<Typography variant="h3" color="primary">
+								$16.100.99
 							</Typography>
-
-							<Typography
-								variant="h2"
-								component={motion.li}
-								variants={item}
-							>
-								Blancpain Villeret
-							</Typography>
-							<Typography
-								variant="p"
-								component={motion.li}
-								variants={item}
-							>
-								This elegant day-date from Villeret collection was
-								introduced at Baselworld 2017.
-							</Typography>
-							<Stack
-								direction="row"
-								alignItems="end"
-								component={motion.li}
-								variants={item}
-							>
-								<Typography
-									variant="body2"
-									component="span"
-								></Typography>
-								Starting at &#160;
-								<Typography variant="h3" color="primary">
-									$16.100.99
-								</Typography>
-							</Stack>
-							<Box component={motion.li} variants={item}>
-								<ButtonBorder sx={{ py: "10px" }}>
-									Shopping Now
-								</ButtonBorder>
-							</Box>
 						</Stack>
-					</Container>
-				</Box>
-			</Carousel>
-		</Box>
+						<Box component={motion.li} variants={item}>
+							<ButtonBorder sx={{ py: "10px" }}>
+								Shopping Now
+							</ButtonBorder>
+						</Box>
+					</Stack>
+				</Container>
+			</Box>
+
+			<Box height="100vh">
+				<Image
+					src={image_2}
+					alt="Exclusive Offer -10% Off This Week"
+					className={classes.carousel_image}
+					priority={true}
+					placeholder="blur"
+				/>
+				<Container>
+					<Stack
+						position="absolute"
+						top={0}
+						width="100%"
+						height="100%"
+						flexDirection="colmun"
+						alignItems="start"
+						justifyContent="center"
+						textAlign="start"
+						spacing={4}
+						component={motion.ul}
+						variants={container}
+						initial="hidden"
+						animate={change == 1 ? "visible" : "hidden"}
+						color="#fff"
+					>
+						<Typography
+							variant="h5"
+							mr={5}
+							component={motion.li}
+							variants={item}
+							color="primary"
+						>
+							Exclusive Offer -10% Off This Week
+						</Typography>
+
+						<Typography
+							variant="h2"
+							component={motion.li}
+							variants={item}
+						>
+							Blancpain Villeret
+						</Typography>
+						<Typography variant="p" component={motion.li} variants={item}>
+							This elegant day-date from Villeret collection was
+							introduced at Baselworld 2017.
+						</Typography>
+						<Stack
+							direction="row"
+							alignItems="end"
+							component={motion.li}
+							variants={item}
+						>
+							<Typography variant="body2" component="span"></Typography>
+							Starting at &#160;
+							<Typography variant="h3" color="primary">
+								$16.100.99
+							</Typography>
+						</Stack>
+						<Box component={motion.li} variants={item}>
+							<ButtonBorder sx={{ py: "10px" }}>
+								Shopping Now
+							</ButtonBorder>
+						</Box>
+					</Stack>
+				</Container>
+			</Box>
+
+			<Box height="100vh">
+				<Image
+					src={image_3}
+					alt="Exclusive Offer -10% Off This Week"
+					className={classes.carousel_image}
+					priority={true}
+					placeholder="blur"
+				/>
+				<Container>
+					<Stack
+						position="absolute"
+						top={0}
+						width="100%"
+						height="100%"
+						flexDirection="colmun"
+						alignItems="start"
+						justifyContent="center"
+						textAlign="start"
+						spacing={4}
+						component={motion.ul}
+						variants={container}
+						initial="hidden"
+						animate={change == 2 ? "visible" : "hidden"}
+						color="#fff"
+					>
+						<Typography
+							variant="h5"
+							mr={5}
+							component={motion.li}
+							variants={item}
+							color="primary"
+						>
+							Exclusive Offer -10% Off This Week
+						</Typography>
+
+						<Typography
+							variant="h2"
+							component={motion.li}
+							variants={item}
+						>
+							Blancpain Villeret
+						</Typography>
+						<Typography variant="p" component={motion.li} variants={item}>
+							This elegant day-date from Villeret collection was
+							introduced at Baselworld 2017.
+						</Typography>
+						<Stack
+							direction="row"
+							alignItems="end"
+							component={motion.li}
+							variants={item}
+						>
+							<Typography variant="body2" component="span"></Typography>
+							Starting at &#160;
+							<Typography variant="h3" color="primary">
+								$16.100.99
+							</Typography>
+						</Stack>
+						<Box component={motion.li} variants={item}>
+							<ButtonBorder sx={{ py: "10px" }}>
+								Shopping Now
+							</ButtonBorder>
+						</Box>
+					</Stack>
+				</Container>
+			</Box>
+		</Carousel>
 	);
 }

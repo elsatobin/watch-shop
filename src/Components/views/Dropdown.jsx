@@ -1,8 +1,7 @@
 "use client";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
 	Button,
-	Grow,
 	Paper,
 	Popper,
 	MenuItem,
@@ -10,7 +9,6 @@ import {
 	Box,
 	ClickAwayListener,
 } from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
 
 import { KeyboardArrowDown } from "@mui/icons-material";
 
@@ -24,22 +22,21 @@ export default function Dropdown(options) {
 		console.info(`You clicked ${options.data[selectedIndex]}`);
 	};
 
-	const handleMenuItemClick = (event, index) => {
+	const handleMenuItemClick = useCallback((event, index) => {
 		setSelectedIndex(index);
 		setOpen(false);
-	};
+	}, []);
 
-	const handleToggle = () => {
+	const handleToggle = useCallback(() => {
 		setOpen((prevOpen) => !prevOpen);
-	};
+	}, []);
 
-	const handleClose = (event) => {
+	const handleClose = useCallback((event) => {
 		if (anchorRef.current && anchorRef.current.contains(event.target)) {
 			return;
 		}
-
 		setOpen(false);
-	};
+	}, []);
 
 	return (
 		<Box sx={{ zIndex: 1, position: "relative" }}>

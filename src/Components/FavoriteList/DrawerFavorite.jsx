@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
 	Badge,
 	IconButton,
@@ -20,16 +20,20 @@ function DrawerFavorite() {
 	const drawerWidth = 350;
 	const [open, setOpen] = useState(false);
 
-	const toggleDrawer = (open) => (event) => {
-		if (
-			event &&
-			event.type === "keydown" &&
-			(event.key === "Tab" || event.key === "Shift")
-		) {
-			return;
-		}
-		setOpen(open);
-	};
+	const toggleDrawer = useCallback(
+		(open) => (event) => {
+			if (
+				event &&
+				event.type === "keydown" &&
+				(event.key === "Tab" || event.key === "Shift")
+			) {
+				return;
+			}
+
+			setOpen(open);
+		},
+		[]
+	);
 
 	const { state, dispatch } = useContext(Store);
 	const { favoriteItems } = state;
@@ -129,4 +133,6 @@ function DrawerFavorite() {
 	);
 }
 
-export default dynamic(() => Promise.resolve(DrawerFavorite), { ssr: false });
+export default React.memo(
+	dynamic(() => Promise.resolve(DrawerFavorite), { ssr: false })
+);

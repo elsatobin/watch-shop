@@ -3,8 +3,6 @@ import {
 	Box,
 	Divider,
 	IconButton,
-	Link,
-	Paper,
 	Stack,
 	Tooltip,
 	Typography,
@@ -14,6 +12,7 @@ import { FaGoogle } from "react-icons/fa";
 
 import Image from "next/image";
 import RegisterForm from "./RegisterForm";
+import Link from "next/link";
 
 export default function Register() {
 	return (

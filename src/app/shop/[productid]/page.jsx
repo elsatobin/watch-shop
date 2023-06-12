@@ -6,8 +6,7 @@ import { notFound } from "next/navigation";
 
 async function getData(id) {
 	const res = await fetch(
-		`https://devita-watchs.vercel.app/assist/productsData/product_${id}.json`,
-		{ cache: "no-store" }
+		`https://devita-watchs.vercel.app/assist/productsData/product_${id}.json`
 	);
 	if (!res.ok) { return notFound(); }
 	return res.json();
@@ -19,7 +18,7 @@ export async function generateMetadata({ params }) {
 	const product = await getData(params.productid);
 	return {
 		title: product && product.name,
-		description: product && product.name,
+		description: product && product.description,
 	};
 }
 

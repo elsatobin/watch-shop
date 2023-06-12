@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useRef, useState } from "react";
 import {
 	Box,
 	ClickAwayListener,
@@ -11,10 +11,10 @@ import {
 	Popper,
 } from "@mui/material/";
 import Link from "next/link";
-import { useRef, useState } from "react";
+
 import { FaUser } from "react-icons/fa";
 
-export default function AccountMenuUnSigned() {
+function AccountMenuUnSigned() {
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef(null);
 
@@ -38,7 +38,6 @@ export default function AccountMenuUnSigned() {
 			setOpen(false);
 		}
 	}
-
 
 	return (
 		<Box>
@@ -97,3 +96,4 @@ export default function AccountMenuUnSigned() {
 		</Box>
 	);
 }
+export default React.memo(AccountMenuUnSigned);

@@ -1,5 +1,5 @@
 "use client";
-import React, { forwardRef, useContext, useEffect, useState } from "react";
+import React, { forwardRef, useCallback, useContext, useEffect, useState } from "react";
 
 import {
 	Box,
@@ -31,11 +31,11 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 function AddToCartConformation({ open, setOpen, item }) {
 	console.log(open);
-	const handleClose = () => {
+	const handleClose = useCallback(() => {
 		setOpen(false);
 		setSelectedColor(null);
 		setItemQuntity(1);
-	};
+	}, [setOpen]);
 
 	const [product, setProduct] = useState({});
 	const [itemQuntity, setItemQuntity] = useState(1);
@@ -290,4 +290,4 @@ function AddToCartConformation({ open, setOpen, item }) {
 	);
 }
 
-export default AddToCartConformation;
+export default React.memo(AddToCartConformation) ;

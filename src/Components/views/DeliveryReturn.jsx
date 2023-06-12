@@ -62,9 +62,7 @@ export default function DeliveryReturn() {
 				</DialogContent>
 
 				<DialogActions>
-					<Button variant="contained" onClick={handleClose}>
-						OK
-					</Button>
+					<Button variant="contained" onClick={handleClose}> OK </Button>
 				</DialogActions>
 			</Dialog>
 		</div>

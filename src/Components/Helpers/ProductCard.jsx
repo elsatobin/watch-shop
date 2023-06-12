@@ -1,18 +1,29 @@
 import { Favorite, FavoriteBorder, ShoppingBag } from "@mui/icons-material";
-import { Box, Button, Card, CardActions, CardContent, Divider, IconButton, Rating, Stack, Typography } from "@mui/material";
+import {
+	Box,
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	Divider,
+	IconButton,
+	Rating,
+	Stack,
+	Typography,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartConformation from "../Cart/AddToCartConformation";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import { Store } from "@/context/Store";
 
 function ProductCard({ item }) {
 	// handel add item to cart ------------
 	const [showConformation, setShowConformation] = useState(false);
-	
-   function showConformation_handel(item) {
+
+	const showConformation_handel = useCallback(() => {
 		setShowConformation(true);
-	}
+	}, []);
 
 	// dealing with context api store -----------------------------
 	const { state, dispatch } = useContext(Store);
@@ -22,6 +33,16 @@ function ProductCard({ item }) {
 		dispatch({ type: "ADD_TO_FAVORITE", payload: item });
 	}
 
+	const Conformation = useMemo(() => {
+		return (
+			<AddToCartConformation
+				open={showConformation}
+				setOpen={setShowConformation}
+				item={item}
+			/>
+		);
+	}, [showConformation, item]);
+	
 	return (
 		<>
 			<Card
@@ -128,11 +149,7 @@ function ProductCard({ item }) {
 				</CardActions>
 			</Card>
 
-			<AddToCartConformation
-				open={showConformation}
-				setOpen={setShowConformation}
-				item={item}
-			/>
+			{/* <Conformation /> */}{Conformation}
 		</>
 	);
 }

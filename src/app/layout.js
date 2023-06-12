@@ -9,8 +9,7 @@ import { SnackbarProvider } from "notistack";
 import Header from "@/Components/Header/Header";
 import ScrollToTopBtn from "@/Components/Helpers/ScrollToTopBtn";
 import { StoreProvider } from "@/context/Store";
-
-
+import React from "react";
 
 const RootLayout = ({ children }) => {
 	// const cache = createEmotionCache();
@@ -40,4 +39,4 @@ const RootLayout = ({ children }) => {
 		</html>
 	);
 };
-export default RootLayout;
+export default React.memo(RootLayout);

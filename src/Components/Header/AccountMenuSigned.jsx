@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
 	Avatar,
 	Box,
@@ -13,7 +13,7 @@ import {
 } from "@mui/material/";
 import { PersonAdd, Settings, Logout } from "@mui/icons-material";
 
-export default function AccountMenuSigned() {
+function AccountMenuSigned() {
 	// const theme = useTheme();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
@@ -111,3 +111,4 @@ export default function AccountMenuSigned() {
 		</Fragment>
 	);
 }
+export default React.memo(AccountMenuSigned)

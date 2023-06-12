@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import {
 	Box,
 	Button,
@@ -36,20 +36,20 @@ const item = {
 	visible: { y: 0, opacity: 1 },
 };
 
-export default function DrawerCartProducts({ open }) {
+function DrawerCartProducts({ open }) {
 	const { state, dispatch } = useContext(Store);
 	const { cartItems } = state;
 	console.log(cartItems);
 
-	function removeItem_handel(id) {
+	const removeItem_handel = (id) => {
 		dispatch({ type: "REMOVE_FROM_CART", payload: id });
-	}
-	function decreaseQuantity(id) {
+	};
+	const decreaseQuantity = (id) => {
 		dispatch({ type: "decrease_quantity", payload: id });
-	}
-	function increaseQuantity(id) {
+	};
+	const increaseQuantity = (id) => {
 		dispatch({ type: "increase_quantity", payload: id });
-	}
+	};
 
 	return (
 		<Stack
@@ -69,6 +69,7 @@ export default function DrawerCartProducts({ open }) {
 						alt="Favorite List empty"
 						width={300}
 						height={300}
+						placeholder="blur"
 					/>
 					<Typography
 						variant="h6"
@@ -91,7 +92,7 @@ export default function DrawerCartProducts({ open }) {
 					>
 						<Link
 							href={`/shop/${
-								typeof product.id === "string"
+								product.id && typeof product.id === "string"
 									? product.id.split("-")[0]
 									: product.id
 							}`}
@@ -225,3 +226,5 @@ export default function DrawerCartProducts({ open }) {
 		</Stack>
 	);
 }
+// export default React.memo(DrawerCartProducts);
+export default DrawerCartProducts;

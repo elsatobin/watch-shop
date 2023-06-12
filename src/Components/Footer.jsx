@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import {
 	Box,
 	Container,
@@ -13,18 +13,30 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 import Link from "next/link";
 import Image from "next/image";
+
 import logoImg from "@/images/logo.png";
+import logoImgDark from "@/images/logo-6.png";
 import fotterImg from "@/images/footer-img.jpg";
 import SocialLinks from "./Helpers/SocialLinks";
 import { navItems } from "@/utility/data";
+import { Store } from "@/context/Store";
 
-export default function Footer() {
+function Footer() {
+	const { state } = useContext(Store);
+	const { isDarkMode } = state;
+
 	return (
 		<Box
-		// mt={8}
-		// bgcolor="action.selected"
-		// component="footer"
-		// color="whitesmoke"
+			mt={8}
+			component="footer"
+			bgcolor="action.selected"
+			// color="whitesmoke"
+			sx={{
+				background: isDarkMode
+					? "url(/assist/images/footer-img.jpg) center fixed"
+					: "",
+				backgroundSize: "cover",
+			}}
 		>
 			<Container>
 				<Stack width="80%" mx="auto" my={5} py={5}>
@@ -41,9 +53,15 @@ export default function Footer() {
 							<Typography variant="body2">
 								Free shipping on all order
 							</Typography>
+							<Divider
+								sx={{
+									display: { xs: "block", md: "none" },
+									width: "50%",
+									mx: "auto",
+									my: 2,
+								}}
+							/>
 						</Grid>
-
-						{/* <Divider orientation="vertical" flexItem /> */}
 
 						<Grid
 							xs={12}
@@ -55,9 +73,15 @@ export default function Footer() {
 							<Typography variant="body2">
 								30 days for free return
 							</Typography>
+							<Divider
+								sx={{
+									display: { xs: "block", md: "none" },
+									width: "50%",
+									mx: "auto",
+									my: 2,
+								}}
+							/>
 						</Grid>
-
-						{/* <Divider orientation="vertical" flexItem /> */}
 
 						<Grid xs={12} md={4}>
 							<Typography variant="h6">Online Support</Typography>
@@ -75,7 +99,16 @@ export default function Footer() {
 				>
 					<Grid xs={12} sm={6} md={4}>
 						<Box>
-							<Image src={logoImg} alt="Divita" className="images" />
+							<Image
+								src={isDarkMode ? logoImg : logoImgDark}
+								alt="Divita"
+								className="images"
+							/>
+							<Typography variant="subtitle2">
+								Lorem ipsum dolor sit amet, consectetur adipisicing
+								elit. Pariatur, dolore tempora aliquam atque voluptas
+								quaerat blanditiis.
+							</Typography>
 						</Box>
 					</Grid>
 
@@ -100,7 +133,8 @@ export default function Footer() {
 					<Grid xs={12} md={5}>
 						<Box>
 							<Typography variant="h5">
-								Subscribe for Newsletter
+								{" "}
+								Subscribe for Newsletter{" "}
 							</Typography>
 							<Typography variant="caption">
 								Get our updates and special offers.
@@ -130,15 +164,15 @@ export default function Footer() {
 					</Grid>
 				</Grid>
 				<Divider sx={{ mt: 3 }} />
+				{/* Copyright --------------------------------------- */}
 				<Stack py={2}>
 					<Typography variant="body1" color="gray" textAlign="center">
 						Copyright © Devita. All Right Reserved.
-						{new Date().getFullYear()} {" "}
-						Developed by{" "}
+						{new Date().getFullYear()} Developed by{" "}
 						<Link
 							href="https://e-mustafa.github.io/portfolio/"
-							target="_blank" 
-							style={{textDecoration:"underline"}}
+							target="_blank"
+							style={{ textDecoration: "underline" }}
 						>
 							Mustafa Abutabl
 						</Link>
@@ -148,3 +182,4 @@ export default function Footer() {
 		</Box>
 	);
 }
+export default React.memo(Footer);

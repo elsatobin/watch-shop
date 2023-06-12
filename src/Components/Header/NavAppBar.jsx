@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
 	AppBar,
 	Box,
@@ -17,20 +17,27 @@ import {
 import { Menu } from "@mui/icons-material";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+
+import { navItems } from "@/utility/data";
+import { useScroll } from "framer-motion";
 
 import ThemeToggle from "./ThemeToggle";
-import DrawerShopping from "../Cart/DrawerShopping";
-import DrawerFavorite from "../FavoriteList/DrawerFavorite";
-import AccountMenuSigned from "./AccountMenuSigned";
-import AccountMenuUnSigned from "./AccountMenuUnSigned";
-import { navItems } from "@/utility/data";
 
-import { useScroll } from "framer-motion";
+import AccountMenuUnSigned from "./AccountMenuUnSigned";
+// import AccountMenuSigned from "./AccountMenuSigned";
+// import DrawerShopping from "../Cart/DrawerShopping";
+// import DrawerFavorite from "../FavoriteList/DrawerFavorite";
+
+const AccountMenuSigned = dynamic(() => import("../Header/AccountMenuSigned"));
+
+const DrawerShopping = dynamic(() => import("../Cart/DrawerShopping"));
+const DrawerFavorite = dynamic(() => import("../FavoriteList/DrawerFavorite"));
 
 const drawerWidth = 240;
 
-export default function NavAppBar(props) {
+function NavAppBar(props) {
 	const [isSigned, setisSigned] = useState(false);
 
 	// handel tabs --------------------------------------  start
@@ -42,20 +49,21 @@ export default function NavAppBar(props) {
 			.filter((e) => e.href !== "/")
 			.findIndex((tap) => pathname.startsWith(tap.href)) + 1 || 0
 	);
+
 	console.log("value ", value);
 
-	const handleChange = (event, newValue) => {
+	const handleChange = useCallback((event, newValue) => {
 		setValue(newValue);
-	};
+	}, []);
 	// ---------------------------------------------  end
 
 	// mobile drawer -------------------------------
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = useState(false);
 
-	const handleDrawerToggle = () => {
+	const handleDrawerToggle = useCallback(() => {
 		setMobileOpen((prevState) => !prevState);
-	};
+	}, []);
 
 	// fixed nav when scroll -------------------------------
 	const [fixNav, setFixNav] = useState(false);
@@ -82,6 +90,7 @@ export default function NavAppBar(props) {
 				indicatorColor="primary"
 				textColor="primary"
 			>
+				{console.log("this is drawer tab")}
 				{navItems &&
 					navItems.map((navLink, i) =>
 						navLink.label.toLowerCase() === "shop" ? (
@@ -121,6 +130,7 @@ export default function NavAppBar(props) {
 			>
 				<Container>
 					<Toolbar disableGutters={true}>
+						{console.log("this is logo")}
 						<Link href="/">
 							<Typography variant="h6" mr={5}>
 								{"Devita "}
@@ -138,6 +148,7 @@ export default function NavAppBar(props) {
 								textColor="primary"
 								selectionFollowsFocus={true}
 							>
+								{console.log("this is nav bar")}
 								{navItems &&
 									navItems.map((navLink, i) =>
 										navLink.label.toLowerCase() === "shop" ? (
@@ -215,3 +226,4 @@ export default function NavAppBar(props) {
 		</Box>
 	);
 }
+export default React.memo(NavAppBar);

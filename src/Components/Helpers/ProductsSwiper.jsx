@@ -75,6 +75,8 @@ export default function ProductsSwiper({ word1, word2 = word1 }) {
 				320: { slidesPerView: 1.5 },
 				991: { slidesPerView: 3.5 },
 			}}
+			autoplay
+			controller
 		>
 			{/* prev button ------------------------------ */}
 			<Button
@@ -117,7 +119,7 @@ export default function ProductsSwiper({ word1, word2 = word1 }) {
 					(item, i) =>
 						(item.filter.includes(word1) ||
 							item.filter.includes(word2)) && (
-							<SwiperSlide key={`slide_${i}`}>
+							<SwiperSlide key={`slide_${i}`} style={{ paddingBottom: "20px" }}>
 								{/* reusable Product card --------------------- */}
 								<ProductCard item={item} />
 							</SwiperSlide>

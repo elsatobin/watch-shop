@@ -1,5 +1,6 @@
 // /** @jsxImportSource @emotion/react */
 "use client";
+import React from "react";
 import {
 	Box,
 	Container,
@@ -13,7 +14,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Call, Email, LocationCity, Send } from "@mui/icons-material";
 import Link from "next/link";
 
-export default function ContactUs() {
+function ContactUs() {
 	return (
 		<Container sx={{ py: "50px" }}>
 			<Typography variant="h4" mb={3}>
@@ -25,7 +26,10 @@ export default function ContactUs() {
 				<Grid container spacing={2}>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6"> <LocationCity /> Address</Typography>
+							<Typography variant="h6">
+								{" "}
+								<LocationCity /> Address
+							</Typography>
 							<Typography variant="body1">
 								You address will be here Lorem Ipsum text
 							</Typography>
@@ -33,7 +37,10 @@ export default function ContactUs() {
 					</Grid>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6"> <Call /> Phone </Typography>
+							<Typography variant="h6">
+								{" "}
+								<Call /> Phone{" "}
+							</Typography>
 							<Typography
 								variant="body1"
 								component={Link}
@@ -53,7 +60,10 @@ export default function ContactUs() {
 					</Grid>
 					<Grid xs={12} md={4} lg={4}>
 						<Stack>
-							<Typography variant="h6"> <Email/> Emails</Typography>
+							<Typography variant="h6">
+								{" "}
+								<Email /> Emails
+							</Typography>
 							<Typography
 								variant="body1"
 								component={Link}
@@ -121,10 +131,7 @@ export default function ContactUs() {
 				</Box>
 
 				<Stack spacing={3} mb={3}>
-					<TextField
-						id="contact_subject"
-						label="Subject"
-						variant="outlined"
+					<TextField id="contact_subject" label="Subject" variant="outlined"
 						fullWidth
 					/>
 					<TextField
@@ -138,7 +145,11 @@ export default function ContactUs() {
 				</Stack>
 
 				<Stack direction="row" justifyContent="center">
-					<Button variant="contained" endIcon={<Send />} sx={{ width: "50%" }}>
+					<Button
+						variant="contained"
+						endIcon={<Send />}
+						sx={{ width: "50%" }}
+					>
 						Send
 					</Button>
 				</Stack>
@@ -146,3 +157,4 @@ export default function ContactUs() {
 		</Container>
 	);
 }
+export default React.memo(ContactUs);

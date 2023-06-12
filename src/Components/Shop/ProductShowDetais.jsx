@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
 	Box,
 	Button,
@@ -34,7 +34,7 @@ import DeliveryReturn from "@/Components/views/DeliveryReturn";
 import ProductSpices from "@/Components/Shop/ProductSpices";
 import ProductsSwiper from "@/Components/Helpers/ProductsSwiper";
 
-export default function ProductShowDetais({ product }) {
+function ProductShowDetais({ product }) {
 	const router = useRouter();
 	const pathParams = useParams();
 	console.log(pathParams);
@@ -410,3 +410,4 @@ export default function ProductShowDetais({ product }) {
 		</Container>
 	);
 }
+export default React.memo (ProductShowDetais)

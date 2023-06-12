@@ -1,18 +1,21 @@
 "use client";
+import React from "react";
+import { Box, Container, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
+
 import ProductsSwiper from "@/Components/Helpers/ProductsSwiper";
 import CarouselMain from "@/Components/Home/CarouselMain";
 import CountDownSale from "@/Components/Home/CountDownSale";
 import OfferCards from "@/Components/Home/OfferCards";
+import Loading from "@/app/loading";
 // import ProductsSections from "@/Components/Home/ProductsSections";
-import { Box, Container, Typography } from "@mui/material";
-import dynamic from "next/dynamic";
 
 const ProductsSections = dynamic(
 	() => import("@/Components/Home/ProductsSections"),
-	{ loading: () => <p style={{ color: "gray" }}>Loading products...</p> }
+	{ loading: () => <Loading /> }
 );
 
-export default function Home() {
+function Home() {
 	return (
 		<>
 			<main>
@@ -45,3 +48,4 @@ export default function Home() {
 		</>
 	);
 }
+export default React.memo(Home);

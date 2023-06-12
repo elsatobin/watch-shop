@@ -38,9 +38,9 @@ export const curancy = [
   { name: "USD", img: "" },
 ];
 
-// export const navItems = ["Home", "Shop", "Blog", "About", "Contact"];
 
 
+// Header navItems = ["Home", "Shop", "Blog", "About", "Contact"];
 export const navItems = [
 	{ label: "Home", href: "/" },
 	{ label: "Shop", href: "/shop" },
@@ -48,10 +48,12 @@ export const navItems = [
 	{ label: "About us", href: "/about" },
 	{ label: "Contact us", href: "/contact" },
 ];
-// Product Types list --> home page
+// Product Types list --> home page --------------------------------------------
 export const ProductTypes = ["New Arrivals", "Featured Top", "Top Rated"];
 
-// SocialLinks
+
+
+// SocialLinks --------------------------------------------
 export const social_links = [
   { title: "Facebook", link: "http://faceboock.com", icon: "<FaFacebook />" },
   { title: "Instgram", link: "http://Instagram.com", icon: "<FaInstagram />" },
@@ -60,7 +62,23 @@ export const social_links = [
   { title: "Github", link: "http://Github.com", icon: "<FaGithub />" },
 ];
 
-// Team Members
+
+// OurStatistics --------------------------------------------
+// export const OurStatistics = {
+// 	productSolid: 765,
+// 	branding: 112,
+// 	cups: 375,
+// 	happyClients: 549,
+// };
+
+export const OurStatistics = [
+	{ title: "Solid products", start: 0, value: 756 },
+	{ title: "Branding", start: 0, value: 112 },
+	{ title: "Cups Of Coffee", start: 0, value: 375 },
+	{ title: "Happy Clients", start: 0, value: 549 },
+];
+
+// Team Members --------------------------------------------
 export const team_members = [
   {
     id: 1,
@@ -100,8 +118,7 @@ export const team_members = [
   },
 ];
 
-// Testimonials
-
+// Testimonials --------------------------------------------
 export const testimonials = [
   {
     name: "Mr.John Lee",

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Container, Rating, Stack, Typography } from "@mui/material/";
 
 import { FormatQuote } from "@mui/icons-material";
@@ -15,7 +16,7 @@ SwiperCore.use([Navigation]);
 
 import { testimonials } from "@/utility/data";
 
-export default function SwipperArticales() {
+function SwipperArticales() {
 	return (
 		<Container>
 			<Typography variant="h3" mb={4} mt={8} align="center" color="primary">
@@ -64,3 +65,5 @@ export default function SwipperArticales() {
 		</Container>
 	);
 }
+
+export default React.memo(SwipperArticales);

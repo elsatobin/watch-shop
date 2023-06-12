@@ -1,16 +1,54 @@
+import React, { useEffect, useState } from "react";
 import { Box, Stack, Typography, Container, Divider } from "@mui/material/";
-import Grid from "@mui/material/Unstable_Grid2";
-import React from "react";
 
 import Image from "next/image";
 
 import bannerImg from "../../images/banner-27.jpg";
 import deals_3Img from "../../images/deals-3.png";
 
-
 // import style from "../../styles/home.module.css";
 
-export default function CountDownSale() {
+const targetDate = new Date("2023-10-19");
+console.log("targetDate ", targetDate);
+
+const inisTimer = { days: "0", hours: "0", minutes: "00", seconds: "00" };
+
+function CountDownSale() {
+	const [timer, setTimer] = useState(inisTimer);
+
+	useEffect(() => {
+		const count = setInterval(() => {
+			const now = new Date().getTime();
+			console.log("now ", now);
+
+			const distance = targetDate - now;
+			console.log("distance ", distance);
+
+			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			const hours = Math.floor(
+				(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+			);
+			const minutes = Math.floor(
+				(distance % (1000 * 60 * 60)) / (1000 * 60)
+			);
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			setTimer({
+				days: days,
+				hours: hours,
+				minutes: minutes,
+				seconds: seconds,
+			});
+
+			if (distance <= 0) {
+				clearInterval(count);
+				setTimer(inisTimer);
+			}
+		}, 1000);
+
+		return () => clearInterval(count);
+	}, []);
+
 	return (
 		<Box
 			height={530}
@@ -31,6 +69,7 @@ export default function CountDownSale() {
 					zIndex={2}
 					justifyContent="center"
 					height="100%"
+					maxWidth="100%"
 				>
 					<Image alt="" src={deals_3Img.src} width={200} height={57} />
 
@@ -45,10 +84,15 @@ export default function CountDownSale() {
 						We Believe That Good Design is Always in Season
 					</Typography>
 
-					<Stack direction="row" textAlign="center" columnGap={3}>
+					<Stack
+						direction="row"
+						textAlign="center"
+						columnGap={{ xs: 0, sm: 3 }}
+						flexWrap="wrap"
+					>
 						<Stack m={1} border="1px solid gray" p={2}>
 							<Typography variant="h4" color="primary" pb={1}>
-								0
+								{timer.days}
 							</Typography>
 							<Typography
 								variant="body1"
@@ -61,7 +105,7 @@ export default function CountDownSale() {
 
 						<Stack m={1} border="1px solid gray" p={2}>
 							<Typography variant="h4" color="primary" pb={1}>
-								0
+								{timer.hours}
 							</Typography>
 							<Typography
 								variant="body1"
@@ -74,7 +118,7 @@ export default function CountDownSale() {
 
 						<Stack m={1} border="1px solid gray" p={2}>
 							<Typography variant="h4" color="primary" pb={1}>
-								00
+								{timer.minutes}
 							</Typography>
 							<Typography
 								variant="body1"
@@ -86,7 +130,7 @@ export default function CountDownSale() {
 						</Stack>
 						<Stack m={1} border="1px solid gray" p={2}>
 							<Typography variant="h4" color="primary" pb={1}>
-								00
+								{timer.seconds}
 							</Typography>
 							<Typography
 								variant="body1"
@@ -102,3 +146,4 @@ export default function CountDownSale() {
 		</Box>
 	);
 }
+export default React.memo(CountDownSale);

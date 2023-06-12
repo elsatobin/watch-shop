@@ -39,7 +39,7 @@ const item = {
 	visible: { y: 0, opacity: 1 },
 };
 
-export default function DrawerCartFavorite({ open }) {
+function DrawerCartFavorite({ open }) {
 	// dealing with context api store -----------------------------
 	const { state, dispatch } = useContext(Store);
 	const { favoriteItems } = state;
@@ -190,3 +190,4 @@ export default function DrawerCartFavorite({ open }) {
 		</>
 	);
 }
+export default React.memo(DrawerCartFavorite);

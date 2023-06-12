@@ -1,6 +1,12 @@
-"use client"
+"use client";
 
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import {
 	Badge,
 	IconButton,
@@ -17,38 +23,52 @@ import CloseIcon from "@mui/icons-material/Close";
 import DrawerCartProducts from "./DrawerCartProducts";
 import dynamic from "next/dynamic";
 import { Store } from "@/context/Store";
+import { Close, ShoppingBag } from "@mui/icons-material";
 
 function DrawerShopping() {
 	const drawerWidth = 350;
 	const [open, setOpen] = useState(false);
 
-	const toggleDrawer = (open) => (event) => {
-		if (
-			event &&
-			event.type === "keydown" &&
-			(event.key === "Tab" || event.key === "Shift")
-		) {
-			return;
-		}
+	const toggleDrawer = useCallback(
+		(open) => (event) => {
+			if (
+				event &&
+				event.type === "keydown" &&
+				(event.key === "Tab" || event.key === "Shift")
+			) {
+				return;
+			}
 
-		setOpen(open);
-	};
+			setOpen(open);
+		},
+		[]
+	);
 
 	const { state, dispatch } = useContext(Store);
 	const { cartItems } = state;
 
-	function clearCart_handel() {
-		dispatch({ type: "CLEAR_CART" });
-	}
+	const clearCart_handel = useCallback(
+		() => dispatch({ type: "CLEAR_CART" }),
+		[dispatch]
+	);
 
-	const itemsInCart_price =
-		cartItems &&
-		cartItems
-			.reduce((a, b) => a + b.price * b.cartQuantity, 0)
-			.toLocaleString();
-	const itemsInCart =
-		cartItems && cartItems.reduce((a, b) => a + (b.cartQuantity || 1), 0);
-	console.log(itemsInCart);
+	// calculate and update count all items in cart -----------
+	const itemsInCart = useMemo(
+		() => cartItems.reduce((a, b) => a + (b.cartQuantity || 1), 0),
+		[cartItems]
+	);
+	// calculate and update total price for all items in cart -----------
+	const itemsInCart_price = useMemo(
+		() =>
+			cartItems
+				.reduce((a, b) => a + b.price * b.cartQuantity, 0)
+				.toLocaleString(),
+		[cartItems]
+	);
+
+	// const itemsInCart =
+	// 	cartItems && cartItems.reduce((a, b) => a + (b.cartQuantity || 1), 0);
+	// console.log(itemsInCart);
 
 	useEffect(() => {
 		typeof window !== "undefined" &&
@@ -56,7 +76,7 @@ function DrawerShopping() {
 	}, [cartItems]);
 
 	return (
-		<Fragment>
+		<>
 			<Tooltip title="Shopping Cart" arrow>
 				<IconButton
 					size="large"
@@ -86,7 +106,7 @@ function DrawerShopping() {
 					// onClick={toggleDrawer(false)}
 					onKeyDown={toggleDrawer(false)}
 				>
-					{/* drawer header */}
+					{/* drawer header ------------------------------------ */}
 					<Paper elevation={3} square>
 						<Stack direction="row" p="15px">
 							<IconButton
@@ -94,7 +114,7 @@ function DrawerShopping() {
 								size="small"
 								onClick={toggleDrawer(false)}
 							>
-								<CloseIcon />
+								<Close />
 							</IconButton>
 							<Stack
 								direction="row"
@@ -103,7 +123,7 @@ function DrawerShopping() {
 								justifyContent="center"
 								alignItems="center"
 							>
-								<ShoppingBagIcon />
+								<ShoppingBag />
 
 								<Typography variant="h6" align="center">
 									Shopping Cart
@@ -117,7 +137,7 @@ function DrawerShopping() {
 						<DrawerCartProducts open={open} />
 					</Stack>
 
-					{/* drawer footer */}
+					{/* drawer footer ------------------------------------------ */}
 					<Paper elevation={3} square>
 						<Stack p="15px" spacing={2} className="d_footer_shadow">
 							<Stack
@@ -130,7 +150,7 @@ function DrawerShopping() {
 									{itemsInCart} {itemsInCart > 1 ? " items" : " item"}
 								</Typography>
 								<Typography variant="h6">
-									${cartItems && itemsInCart_price.toLocaleString()}
+									${cartItems && itemsInCart_price}
 								</Typography>
 							</Stack>
 							<Stack
@@ -157,9 +177,9 @@ function DrawerShopping() {
 					</Paper>
 				</Stack>
 			</SwipeableDrawer>
-		</Fragment>
+		</>
 	);
 }
 
-// export default DrawerShopping;
 export default dynamic(() => Promise.resolve(DrawerShopping), { ssr: false });
+// export default React.memo(DrawerShopping);

@@ -50,7 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	paddingRight: "20px",
 }));
 
-export default function PrimarySearchAppBar() {
+function PrimarySearchAppBar() {
 	const language = languages;
 	const curanc = curancy;
 
@@ -98,7 +98,8 @@ export default function PrimarySearchAppBar() {
 					<Stack
 						direction="row"
 						alignItems="center"
-						color="text.secondary" fontSize="12px"
+						color="text.secondary"
+						fontSize="12px"
 					>
 						Curancy
 						{/* render languages in dropdown component ----------- */}
@@ -120,3 +121,4 @@ export default function PrimarySearchAppBar() {
 		</Container>
 	);
 }
+export default PrimarySearchAppBar;

@@ -1,8 +1,9 @@
 "use client"
+import React from "react";
 import TopBar from "./TopBar";
 import NavAppBar from "./NavAppBar";
 
-export default function Header() {
+function Header() {
   return (
     <header>
       {/* <TopBar /> */}
@@ -10,3 +11,5 @@ export default function Header() {
     </header>
   );
 }
+export default Header;
+// export default React.memo(Header);

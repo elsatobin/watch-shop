@@ -1,19 +1,20 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 
 import { Button, IconButton } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 
 import { Store } from "@/context/Store";
 
-export default function ThemeToggle() {
+function ThemeToggle() {
 	const { state, dispatch } = useContext(Store);
 	const { isDarkMode } = state;
 	console.log(isDarkMode);
 
-	function toggleMode_handler() {
+
+	const toggleMode_handler = useCallback(() => {
 		dispatch({ type: "TOGGLE_DARK-MODE" });
-	}
+	}, [dispatch]);
 
 	// set choose mode to localStorage ------------
 	useEffect(() => {
@@ -27,3 +28,4 @@ export default function ThemeToggle() {
 		</IconButton>
 	);
 }
+export default React.memo(ThemeToggle);
