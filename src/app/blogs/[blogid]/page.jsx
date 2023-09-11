@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 async function getData(id) {
 	const res = await fetch(
 		// `https://devita-watchs.vercel.app/assist/blogs/blog-${id}.json`
-		`http://localhost:3000/assist/blogs/blog_${id}.json`
+		`https://devita-watchs.vercel.app/assist/blogs/blog_${id}.json`
 	);
 	if (!res.ok) { return notFound(); }
 	return res.json();
