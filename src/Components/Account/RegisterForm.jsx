@@ -13,58 +13,48 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AccountCircle, Email, LockPerson } from "@mui/icons-material";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-// const signupSchema = object({
-// 	name: string().min(1, "Name is required").max(12),
-// 	email: string().min(1, "Email is required").email("Email is invalid"),
-// 	password: string()
-// 		.min(1, "Password is required")
-// 		.min(4, "Password must be more than 4 characters")
-// 		.max(12, "Password must be less than 12 characters"),
-// 	passwordConfirm: string().min(1, "Please confirm your password"),
-// }).refine((data) => data.password === data.passwordConfirm, {
-// 	path: ["passwordConfirm"],
-// 	message: "Passwords do not match",
-// });
+// import axios from "axios";
+
+const schema = Yup.object({
+	firstName: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required"),
+	lastName: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required"),
+	email: Yup.string("Enter your email").email("Enter a valid email").required("Email is required"),
+	password: Yup.string("Enter your password")
+		.min(5, "Password should be of minimum 5 characters length")
+		.required("Password is required"),
+	passConfirm: Yup.string().oneOf([Yup.ref("password"), null], "Passwords do not match"),
+	gender: Yup.string().required("Please select your gender"),
+	terms: Yup.bool().oneOf([true], "You must accept the terms and conditions"),
+});
 
 const InitialValue = {
-	fName: "",
-	lName: "",
+	firstName: "",
+	lastName: "",
 	email: "",
 	password: "",
 	passConfirm: "",
 	gender: "",
 	terms: false,
-	showPassword: false,
 };
 
 export default function RegisterForm() {
-	// const [formInput, setFormInput] = useReducer(
-	// 	(state, newState) => ({ ...state, ...newState }),
-	// 	{ email: "", password: "", }
-	// );
+	const [showPassword, setShowPassword] = useState(false);
+	const [message, setMessage] = useState(""); // This will be used to show a message if the submission is successful
+	const [submitted, setSubmitted] = useState(false);
 
-	const [formInput, setFormInput] = useState({
-		fName: "",
-		lName: "",
-		email: "",
-		password: "",
-		passConfirm: "",
-		gender: "",
-		terms: false,
-		showPassword: false,
-	});
-	console.log(formInput);
 
-	// reset form ---------------------------------------
-	const resetForm = () => setFormInput(InitialValue);
+	const handleSubmit = (values, { resetForm }) => {
+		// e.preventDefault();
 
-	const handleSubmit = (evt) => {
-		evt.preventDefault();
-
-		let data = { formInput };
+		setMessage("Form submitted");
+		setSubmitted(true);
+		console.log(values);
+		// JSON.stringify(values, null, 2);
 
 		// fetch("https://pointy-gauge.glitch.me/api/form", {
 		// 	method: "POST",
@@ -76,63 +66,94 @@ export default function RegisterForm() {
 		// 	.then((response) => response.json())
 		// 	.then((response) => console.log("Success:", JSON.stringify(response)))
 		// 	.catch((error) => console.error("Error:", error));
+
+		resetForm();
 	};
 
-	const handleInput = (ev) => {
-		if (ev.target.type === "checkbox") {
-			setFormInput((prevFormInput) => ({
-				...prevFormInput,
-				[ev.target.name]: ev.target.checked,
-			}));
-			console.log(ev.target.type);
-		} else {
-			const name = ev.target.name;
-			const newValue = ev.target.value;
-			setFormInput((prevFormInput) => ({
-				...prevFormInput,
-				[name]: newValue,
-			}));
-			console.log(ev.target.type);
-			console.log("name", name);
-			console.log("newValue", newValue);
-		}
-	};
+
+	const formik = useFormik({
+		initialValues: InitialValue,
+		validationSchema: schema,
+		onsubmit: handleSubmit,
+	});
+
+	// const {
+	// 	isValid,
+	// 	values,
+	// 	errors,
+	// 	touched,
+	// 	isSubmitting,
+	// 	handleBlur,
+	// 	handleChange,
+	// 	handleSubmit,
+	// } = useFormik({
+	// 	initialValues: {
+	// 		firstName: "",
+	// 		lastName: "",
+	// 		email: "",
+	// 		phone: "",
+	// 		password: "",
+	// 		passwordCon: "",
+	// 		terms: false,
+	// 	},
+	// 	validationSchema: registerSchema,
+	// 	onSubmit,
+	// });
+
+	// onSubmit = (values, { setSubmitted }) => {};
+
+	useEffect(() => {
+		if (!submitted) return;
+
+		setTimeout(() => {
+			setMessage("");
+			setSubmitted(false);
+		}, 3000);
+	}, [submitted]);
+
+	// reset form ---------------------------------------
+	// const resetForm = () => setFormInput(InitialValue);
+
+	
 
 	return (
-		<Box component="form" autoComplete="off" onSubmit={handleSubmit}>
+		<Box component="form" action="Post" autoComplete="off" onSubmit={formik.handleSubmit}>
 			<Grid container spacing={2}>
 				<Grid xs={12} md={6}>
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-						<AccountCircle
-							sx={{ color: "action.active", mr: 1, my: 0.5 }}
-						/>
+						<AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
 						<TextField
-							id="register_fName"
+							id="register_firstName"
 							label="First Name"
 							variant="standard"
-							name="fName"
-							// value={formInput.fName}
-							onChange={handleInput}
-							defaultValue={formInput.fName ?? ""}
 							fullWidth
+							name="firstName"
+							// defaultValue={formInput.fName ?? ""}
+							value={formik.values.firstName}
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+							helperText={formik.touched.firstName && formik.errors.firstName}
 						/>
 					</Box>
 				</Grid>
 
 				<Grid xs={12} md={6}>
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
-						<AccountCircle
-							sx={{ color: "action.active", mr: 1, my: 0.5 }}
-						/>
+						<AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
 						<TextField
-							id="register_lName"
+							id="register_lastName"
 							label="Last Name"
 							variant="standard"
 							// color="success"
-							name="lName"
-							defaultValue={formInput.lName ?? ""}
-							onChange={handleInput}
+							name="lastName"
 							fullWidth
+							// defaultValue={formInput.lName ?? ""}
+							value={formik.values.lastName}
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+							helperText={formik.touched.lastName && formik.errors.lastName}
 						/>
 					</Box>
 				</Grid>
@@ -145,10 +166,13 @@ export default function RegisterForm() {
 							label="Email"
 							variant="standard"
 							name="email"
-							defaultValue={formInput.email ?? ""}
-							onChange={handleInput}
 							fullWidth
-							required
+							// defaultValue={formInput.email ?? ""}
+							value={formik.values.email}
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							error={formik.touched.email && Boolean(formik.errors.email)}
+							helperText={formik.touched.email && formik.errors.email}
 						/>
 					</Box>
 				</Grid>
@@ -157,15 +181,18 @@ export default function RegisterForm() {
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
 						<LockPerson sx={{ color: "action.active", mr: 1, my: 0.5 }} />
 						<TextField
-							id="register_passwrd"
+							id="register_password"
 							label="Password"
 							variant="standard"
 							name="password"
-							type={formInput.showPassword ? "text" : "password"}
-							defaultValue={formInput.password ?? ""}
-							onChange={handleInput}
 							fullWidth
-							required
+							type={showPassword ? "text" : "password"}
+							// defaultValue={formInput.password ?? ""}
+							value={formik.values.password}
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							error={formik.touched.password && Boolean(formik.errors.password)}
+							helperText={formik.touched.password && formik.errors.password}
 						/>
 					</Box>
 				</Grid>
@@ -178,10 +205,13 @@ export default function RegisterForm() {
 							label="Password Confirmation"
 							variant="standard"
 							name="passConfirm"
-							type={formInput.showPassword ? "text" : "password"}
-							defaultValue={formInput.passConfirm ?? ""}
-							onChange={handleInput}
+							type={showPassword ? "text" : "password"}
 							fullWidth
+							value={formik.values.passConfirm}
+							onChange={formik.handleChange}
+							onBlur={formik.handleBlur}
+							error={formik.touched.passConfirm && Boolean(formik.errors.passConfirm)}
+							helperText={formik.touched.passConfirm && formik.errors.passConfirm}
 						/>
 					</Box>
 				</Grid>
@@ -191,8 +221,8 @@ export default function RegisterForm() {
 						control={<Checkbox />}
 						labelPlacement="end"
 						name="showPassword"
-						onChange={handleInput}
-						checked={formInput.showPassword ?? ""}
+						onChange={() => setShowPassword(!showPassword)}
+						checked={showPassword ?? false}
 						label="show Password"
 					/>
 				</Grid>
@@ -203,39 +233,40 @@ export default function RegisterForm() {
 						row
 						aria-labelledby="gender"
 						name="gender"
-						value={formInput.gender ?? ""}
-						onChange={handleInput}
+						value={formik.values.gender}
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						error={formik.touched.gender && Boolean(formik.errors.gender)}
 					>
-						<FormControlLabel
-							value="male"
-							control={<Radio />}
-							label="Male"
-						/>
-						<FormControlLabel
-							value="female"
-							control={<Radio />}
-							label="Female"
-						/>
+						<FormControlLabel value="male" control={<Radio />} label="Male" />
+						<FormControlLabel value="female" control={<Radio />} label="Female" />
 					</RadioGroup>
+					<Typography variant="body2" color="error">
+						{formik.touched.gender && formik.errors.gender}
+					</Typography>
 
 					<FormControlLabel
 						control={<Checkbox />}
 						labelPlacement="end"
 						name="terms"
-						onChange={handleInput}
-						checked={formInput.terms ?? ""}
 						label="I have read and accept Terms"
-						required
+						checked={formik.values.terms}
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+						error={formik.touched.terms && Boolean(formik.errors.terms)}
 					/>
+					<Typography variant="body2" color="error">
+						{formik.touched.terms && formik.errors.terms}
+					</Typography>
 				</Grid>
 			</Grid>
 
 			<Stack direction="row" gap={4} mt={3} justifyContent="center">
-				<Button variant="contained" type="submit">
+				<Button variant="contained" type="submit" disabled={false}>
 					Submit
 				</Button>
 
-				<Button variant="contained" type="reset" onClick={resetForm}>
+				<Button variant="contained" type="reset" onClick={formik.resetForm}>
 					Clear
 				</Button>
 			</Stack>

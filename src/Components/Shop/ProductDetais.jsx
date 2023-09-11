@@ -17,11 +17,7 @@ import {
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 
 import {
-	ArrowBack,
-	Done,
-	Favorite,
-	FavoriteBorder,
-	ShoppingBag,
+	ArrowBack, Done, Favorite, FavoriteBorder, ShoppingBag,
 } from "@mui/icons-material";
 import { FaMinus, FaMoneyBill, FaPlus } from "react-icons/fa";
 

@@ -5,7 +5,7 @@ export const metadata = {
 	description: "Read our Blogs",
 };
 
-const Blog = dynamic(() => import("@/Components/Blog"), {
+const Blog = dynamic(() => import("@/Components/Blogs/Blogs"), {
 	loading: () => <p style={{ color: "gray" }}>Loading...</p>,
 });
 

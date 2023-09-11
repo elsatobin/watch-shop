@@ -19,10 +19,7 @@ function CountDownSale() {
 	useEffect(() => {
 		const count = setInterval(() => {
 			const now = new Date().getTime();
-			console.log("now ", now);
-
 			const distance = targetDate - now;
-			console.log("distance ", distance);
 
 			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 			const hours = Math.floor(
@@ -90,7 +87,7 @@ function CountDownSale() {
 						columnGap={{ xs: 0, sm: 3 }}
 						flexWrap="wrap"
 					>
-						<Stack m={1} border="1px solid gray" p={2}>
+						<Stack m={1} border="1px solid gray" p={2} minWidth={72}>
 							<Typography variant="h4" color="primary" pb={1}>
 								{timer.days}
 							</Typography>
@@ -103,7 +100,7 @@ function CountDownSale() {
 							</Typography>
 						</Stack>
 
-						<Stack m={1} border="1px solid gray" p={2}>
+						<Stack m={1} border="1px solid gray" p={2} minWidth={72}>
 							<Typography variant="h4" color="primary" pb={1}>
 								{timer.hours}
 							</Typography>
@@ -116,7 +113,7 @@ function CountDownSale() {
 							</Typography>
 						</Stack>
 
-						<Stack m={1} border="1px solid gray" p={2}>
+						<Stack m={1} border="1px solid gray" p={2} minWidth={72}>
 							<Typography variant="h4" color="primary" pb={1}>
 								{timer.minutes}
 							</Typography>
@@ -128,7 +125,7 @@ function CountDownSale() {
 								Min
 							</Typography>
 						</Stack>
-						<Stack m={1} border="1px solid gray" p={2}>
+						<Stack m={1} border="1px solid gray" p={2} minWidth={72}>
 							<Typography variant="h4" color="primary" pb={1}>
 								{timer.seconds}
 							</Typography>

@@ -3,13 +3,13 @@
 import "../styles/globals.css";
 import "../styles/home.css";
 
+import React from "react";
 import Footer from "@/Components/Footer";
 // import createEmotionCache from "@/utility/createEmotionCache";
 import { SnackbarProvider } from "notistack";
 import Header from "@/Components/Header/Header";
 import ScrollToTopBtn from "@/Components/Helpers/ScrollToTopBtn";
 import { StoreProvider } from "@/context/Store";
-import React from "react";
 
 const RootLayout = ({ children }) => {
 	// const cache = createEmotionCache();

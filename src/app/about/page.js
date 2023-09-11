@@ -1,5 +1,6 @@
 // import AboutUs from "@/Components/About/AboutUs";
 
+import { CircularProgress } from "@mui/material";
 import dynamic from "next/dynamic";
 
 export const metadata = {
@@ -8,7 +9,8 @@ export const metadata = {
 };
 
 const AboutUs = dynamic(() => import("@/Components/About/AboutUs"), {
-	loading: () => <p style={{ color: "gray" }}>Loading...</p>,
+	loading: () => <p style={{ color: "gray" }}> Loading...</p>,
+	// <CircularProgress />,
 });
 
 export default function About() {

@@ -6,7 +6,13 @@ import Grid from "@mui/material/Unstable_Grid2";
 import axios from "axios";
 
 import { ProductTypes } from "@/utility/data";
-import ProductCard from "../Helpers/ProductCard";
+import dynamic from "next/dynamic";
+import SkeletonCard from "../Helpers/SkeletonCard";
+// import ProductCard from "../Helpers/ProductCard";
+
+const ProductCard = dynamic(() => import("../Helpers/ProductCard"), {
+	loading: () => <SkeletonCard />,
+});
 
 export default function ProductsSections() {
 	const [products, setProducts] = useState([]);
@@ -19,9 +25,7 @@ export default function ProductsSections() {
 	useEffect(() => {
 		async function getProducts() {
 			setIsLoading(true);
-			const res = await axios(
-				`/assist/productsData/products.json`
-			);
+			const res = await axios(`/assist/productsData/products.json`);
 
 			if (!res.status == 200) {
 				setGetError({ status: true, message: res?.error });

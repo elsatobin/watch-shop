@@ -55,36 +55,7 @@ function ProductShowDetais({ product }) {
 		setSelectedColor(event.target.value);
 	};
 
-	// fetch product data by id
-	// async function getProduct(id) {
-	// 	await axios
-	// 		.get(`/assist/productsData/product_${id || 1}.json`)
-	// 		.then((res) => {
-	// 			setProduct(res.data);
-	// 			console.log(res);
-	// 		})
-	// 		.catch((error) => console.error(error));
-	// }
-
-	// useEffect(() => {
-	// 	async function getProduct(id) {
-	// 		setIsLoading(true);
-	// 		const res = await fetch(`/assist/productsData/product_${id}.json`, {
-	// 			cache: "no-store",
-	// 		});
-
-	// 		if (!res.ok) {
-	// 			return notFound();
-	// 		}
-
-	// 		const data = await res.json();
-	// 		setIsLoading(false);
-	// 		setProduct(data);
-	// 		console.log(data);
-	// 	}
-	// 	getProduct(pathParams.productid);
-	// }, [pathParams.productid]);
-
+	
 	// handel add item to cart ------------
 	const { state, dispatch } = useContext(Store);
 	const { favoriteItems } = state;
@@ -214,7 +185,7 @@ function ProductShowDetais({ product }) {
 									color="error.main"
 									component="span"
 								>
-									Not Avilable
+									Not Available
 								</Typography>
 							) : product.highlights < 10 ? (
 								<Typography

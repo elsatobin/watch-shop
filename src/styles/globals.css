@@ -14,7 +14,7 @@ body {
 	overflow-x: hidden;
 	transition: 0.5s ease-out;
 	-webkit-transition: 0.5s ease-out;
-	scroll-behavior: smooth;
+	scroll-behavior: smooth !important;
 }
 
 a {

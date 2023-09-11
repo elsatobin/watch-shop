@@ -7,7 +7,8 @@ import { notFound } from "next/navigation";
 
 async function getData(id) {
 	const res = await fetch(
-		`https://devita-watchs.vercel.app/assist/productsData/product_${id}.json`
+		// `https://devita-watchs.vercel.app/assist/blogs/blog-${id}.json`
+		`http://localhost:3000/assist/blogs/blog_${id}.json`
 	);
 	if (!res.ok) { return notFound(); }
 	return res.json();
@@ -16,28 +17,26 @@ async function getData(id) {
 
 // export dynamic metadata ---------------------------
 export async function generateMetadata({ params }) {
-	const product = await getData(params.productid);
+	const blog = await getData(params.blogid);
 	return {
-		title: product && product.name,
-		description: product && product.description,
+		title: blog && blog.name,
+		content: blog && blog.content,
 	};
 }
 
 
 
-export default async function Productid({ params }) {
-	const product = await getData(params.productid);
-	console.log(product);
+export default async function BlogId({ params }) {
+	const blog = await getData(params.blogid);
+	console.log(blog);
 
-	const ProductShowDetais = dynamic(
-		() => import("@/Components/Shop/ProductShowDetais"),
-		{ loading: () => <ProductDetaisSkeleton /> }
-	);
+	const ShowBlog = dynamic(() => import('@/Components/Blogs/ShowBlog'), {
+		loading: () => <ProductDetaisSkeleton />,
+	});
 
 	return (
 		<section>
-			{/* <ProductDetais /> */}
-			<ProductShowDetais product={product} />
+			<ShowBlog blog={blog} />
 		</section>
 	);
 }

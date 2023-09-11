@@ -14,7 +14,13 @@ import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 
 import axios from "axios";
-import ProductCard from "./ProductCard";
+import SkeletonCard from "./SkeletonCard";
+import dynamic from "next/dynamic";
+
+// dynamic/lazy loading show skeleton while down loading products data
+const ProductCard = dynamic(() => import("../Helpers/ProductCard"), {
+	loading: () => <SkeletonCard />,
+});
 
 export default function ProductsSwiper({ word1, word2 = word1 }) {
 	// get Featured Top
@@ -119,7 +125,10 @@ export default function ProductsSwiper({ word1, word2 = word1 }) {
 					(item, i) =>
 						(item.filter.includes(word1) ||
 							item.filter.includes(word2)) && (
-							<SwiperSlide key={`slide_${i}`} style={{ paddingBottom: "20px" }}>
+							<SwiperSlide
+								key={`slide_${i}`}
+								style={{ paddingBottom: "20px" }}
+							>
 								{/* reusable Product card --------------------- */}
 								<ProductCard item={item} />
 							</SwiperSlide>

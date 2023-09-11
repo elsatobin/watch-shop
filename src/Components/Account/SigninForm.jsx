@@ -11,18 +11,18 @@ import {
 
 import { Email, LockPerson } from "@mui/icons-material";
 
-// const signupSchema = object({
-// 	name: string().min(1, "Name is required").max(12),
-// 	email: string().min(1, "Email is required").email("Email is invalid"),
-// 	password: string()
-// 		.min(1, "Password is required")
-// 		.min(4, "Password must be more than 4 characters")
-// 		.max(12, "Password must be less than 12 characters"),
-// 	passwordConfirm: string().min(1, "Please confirm your password"),
-// }).refine((data) => data.password === data.passwordConfirm, {
-// 	path: ["passwordConfirm"],
-// 	message: "Passwords do not match",
-// });
+const signupSchema = object({
+	name: string().min(1, "Name is required").max(12),
+	email: string().min(1, "Email is required").email("Email is invalid"),
+	password: string()
+		.min(1, "Password is required")
+		.min(4, "Password must be more than 4 characters")
+		.max(18, "Password must be less than 18 characters"),
+	passwordConfirm: string().min(1, "Please confirm your password"),
+}).refine((data) => data.password === data.passwordConfirm, {
+	path: ["passwordConfirm"],
+	message: "Passwords do not match",
+});
 
 export default function SugninForm() {
 	// const [formInput, setFormInput] = useReducer(
@@ -80,7 +80,6 @@ export default function SugninForm() {
 							required
 						/>
 					</Box>
-					
 
 					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
 						<LockPerson sx={{ color: "action.active", mr: 1, my: 0.5 }} />

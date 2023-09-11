@@ -1,13 +1,6 @@
 "use client";
 
-import {
-	Box,
-	Divider,
-	IconButton,
-	Stack,
-	Tooltip,
-	Typography,
-} from "@mui/material";
+import { Box, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 
 import { FaGoogle } from "react-icons/fa";
 
@@ -19,17 +12,8 @@ import SugninForm from "./SigninForm";
 export default function Signin() {
 	return (
 		<Stack px={3} mt={3}>
-			<Stack
-				direction="row"
-				justifyContent="center"
-				alignItems="end"
-				columnGap={1}
-			>
-				<Typography
-					variant="h4"
-					color="primary"
-					fontSize={{ xs: "20px", sm: "34px" }}
-				>
+			<Stack direction="row" justifyContent="center" alignItems="end" columnGap={1}>
+				<Typography variant="h4" color="primary" fontSize={{ xs: "20px", sm: "34px" }}>
 					Sign in
 				</Typography>
 
@@ -56,12 +40,7 @@ export default function Signin() {
 					</IconButton>
 				</Tooltip>
 			</Stack>
-			<Typography
-				variant="body2"
-				color="text.disabled"
-				align="center"
-				mb={1}
-			>
+			<Typography variant="body2" color="text.disabled" align="center" mb={1}>
 				or use your email account:
 			</Typography>
 			<Divider />

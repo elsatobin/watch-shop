@@ -157,7 +157,7 @@ function NavAppBar(props) {
 												label={navLink.label}
 												component={Link}
 												href="/#shop"
-												scroll={false}
+												scroll={false} 
 											/>
 										) : (
 											<Tab
