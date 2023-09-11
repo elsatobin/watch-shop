@@ -1,19 +1,23 @@
-"use client";
+'use client';
 
-import { Box, Divider, IconButton, Stack, Tooltip, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle } from 'react-icons/fa';
 
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import SugninForm from "./SigninForm";
+import SignInForm from './SigninForm';
 
 export default function Signin() {
 	return (
 		<Stack px={3} mt={3}>
 			<Stack direction="row" justifyContent="center" alignItems="end" columnGap={1}>
-				<Typography variant="h4" color="primary" fontSize={{ xs: "20px", sm: "34px" }}>
+				<Typography
+					variant="h4"
+					color="primary"
+					fontSize={{ xs: '20px', sm: '34px' }}
+				>
 					Sign in
 				</Typography>
 
@@ -26,13 +30,13 @@ export default function Signin() {
 			</Stack>
 			<Stack direction="row" gap={4} my={3} justifyContent="center">
 				{/* Icons to Sign in by Google ------------- */}
-				<Tooltip title="Sigin in with google" arrow>
-					<IconButton sx={{ width: "40px", height: "40px" }}>
+				<Tooltip title="SignIn in with google" arrow>
+					<IconButton sx={{ width: '40px', height: '40px' }}>
 						<Link href="http://Google.com" target="_blank">
 							{/* <FaGoogle size={40} /> */}
 							<Image
 								src="/assist/icons/google.svg"
-								alt="Sigin in with google"
+								alt="SignIn in with google"
 								width={40}
 								height={40}
 							/>
@@ -46,7 +50,7 @@ export default function Signin() {
 			<Divider />
 			<Box width="100%" my={2}>
 				{/* Sugnin Form component ----------------------------- */}
-				<SugninForm />
+				<SignInForm />
 			</Box>
 
 			<Typography variant="body2" color="text.disabled">
@@ -54,7 +58,7 @@ export default function Signin() {
 			</Typography>
 
 			<Typography variant="subtitle2" my={3}>
-				Not Have an account?{" "}
+				Not Have an account?{' '}
 				<Link href="account/register" className="sign-links">
 					Register
 				</Link>
