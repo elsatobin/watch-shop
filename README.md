@@ -72,6 +72,7 @@ This project represents a **real-world frontend architecture**, demonstrating ho
 ---
 
 ## 📁 Project Structure
+```
 ├── public/ # Static assets
 ├── src/
 │   ├── app/ # Next.js App Router pages & layouts
@@ -94,10 +95,10 @@ This project represents a **real-world frontend architecture**, demonstrating ho
 ├── jsconfig.json # Path aliases
 ├── next.config.js # Next.js configuration
 └── package.json # Dependencies and scripts
+```
 
 
-
-<details>
+<!-- <details>
 <summary>public/</summary>
 
 - Static assets
@@ -167,7 +168,7 @@ This project represents a **real-world frontend architecture**, demonstrating ho
 - jsconfig.json - Path aliases  
 - next.config.js - Next.js configuration  
 - package.json - Dependencies and scripts
-</details>
+</details> -->
 
 
 ---
