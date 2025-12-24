@@ -72,7 +72,6 @@ This project represents a **real-world frontend architecture**, demonstrating ho
 ---
 
 ## 📁 Project Structure
-
 ├── public/ # Static assets
 ├── src/
 │   ├── app/ # Next.js App Router pages & layouts
