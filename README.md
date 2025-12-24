@@ -75,26 +75,100 @@ This project represents a **real-world frontend architecture**, demonstrating ho
 
 ├── public/ # Static assets
 ├── src/
-│ ├── app/ # Next.js App Router pages & layouts
-│ │ ├── page.tsx # Home page
-│ │ ├── loading.tsx # Global loading UI
-│ │ ├── not-found.tsx # Custom 404 page
-│ │ ├── about/ # About page
-│ │ ├── shop/ # Shop pages
-│ │ ├── contact/ # Contact page
-│ │ └── ... # Other routes (products, blogs)
-│ ├── components/ # Reusable and feature-based components
-│ │ ├── Shop/
-│ │ ├── Cart/
-│ │ ├── Blogs/
-│ │ └── Helpers/
-│ ├── context/ # Global state management
-│ └── ... # Utilities and helpers
+│   ├── app/ # Next.js App Router pages & layouts
+│   │   ├── page.tsx # Home page
+│   │   ├── loading.tsx # Global loading UI
+│   │   ├── not-found.tsx # Custom 404 page
+│   │   ├── about/ # About page
+│   │   ├── shop/ # Shop pages
+│   │   ├── contact/ # Contact page
+│   │   └── ... # Other routes (products, blogs)
+│   ├── components/ # Reusable and feature-based components
+│   │   ├── Shop/
+│   │   ├── Cart/
+│   │   ├── Blogs/
+│   │   └── Helpers/
+│   ├── context/ # Global state management
+│   └── ... # Utilities and helpers
 ├── .env # Environment variables
 ├── .eslintrc.json # ESLint configuration
 ├── jsconfig.json # Path aliases
 ├── next.config.js # Next.js configuration
 └── package.json # Dependencies and scripts
+
+
+
+<details>
+<summary>public/</summary>
+
+- Static assets
+</details>
+
+<details>
+<summary>src/</summary>
+
+<details>
+<summary>app/</summary>
+
+- page.tsx - Home page  
+- loading.tsx - Global loading UI  
+- not-found.tsx - Custom 404 page  
+
+<details>
+<summary>about/</summary>
+- About page
+</details>
+
+<details>
+<summary>shop/</summary>
+- Shop pages
+</details>
+
+<details>
+<summary>contact/</summary>
+- Contact page
+</details>
+
+- ... - Other routes (products, blogs)
+</details>
+
+<details>
+<summary>components/</summary>
+
+<details>
+<summary>Shop/</summary>
+</details>
+
+<details>
+<summary>Cart/</summary>
+</details>
+
+<details>
+<summary>Blogs/</summary>
+</details>
+
+<details>
+<summary>Helpers/</summary>
+</details>
+</details>
+
+<details>
+<summary>context/</summary>
+- Global state management
+</details>
+
+- ... - Utilities and helpers
+</details>
+
+<details>
+<summary>Root Files</summary>
+
+- .env - Environment variables  
+- .eslintrc.json - ESLint configuration  
+- jsconfig.json - Path aliases  
+- next.config.js - Next.js configuration  
+- package.json - Dependencies and scripts
+</details>
 
 
 ---
